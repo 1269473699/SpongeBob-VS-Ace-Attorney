@@ -17,4 +17,5 @@ if __name__ == '__main__':
     lp = LogoPrinter(width, height, screen)
     if action == 0:
         lp.display_logo()
+        input()
 
