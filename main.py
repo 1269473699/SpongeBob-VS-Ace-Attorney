@@ -1,6 +1,6 @@
 import pygame
 import sys
-from title.title import LogoPrinter
+from title.title import LogoPrinter,TitleInterface
 
 pygame.init()
 vInfo = pygame.display.Info()
@@ -15,7 +15,11 @@ if __name__ == '__main__':
     action = 0
 
     lp = LogoPrinter(width, height, screen)
+    tp = TitleInterface(width, height, screen)
     if action == 0:
         lp.display_logo()
-        input()
+        action = action + 1
+    if action == 1:
+        tp.display_title()
+
 

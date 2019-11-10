@@ -40,4 +40,27 @@ class LogoPrinter:
             pygame.display.update()
             self.fClock.tick(self.fps)
 
-        #sleep(1)
+class TitleInterface:
+    def __init__(self,width,height,screen):
+        self.screen = screen
+        self.toptitle = pygame.image.load('resources/pics/titleBackground.ver1.jpg')
+        self.bottomtitle = pygame.image.load('resources/pics/UnderTheTitle.jpg')
+        self.toptitle = pygame.transform.scale(self.toptitle,(width,int(0.5*height)))
+        self.bottomtitle = pygame.transform.scale(self.bottomtitle,(width,int(0.5*height)))
+        self.toptitle_rect = self.toptitle.get_rect()
+        self.bottomtitle_rect = self.bottomtitle.get_rect()
+        self.bottomtitle_rect.top = 0.5*height
+        self.fps = 30
+        self.fClock = pygame.time.Clock()
+    def display_title(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if event.button == 1 and False:
+                        print('nextPart')
+
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(self.toptitle, self.toptitle_rect)
+            self.screen.blit(self.bottomtitle, self.bottomtitle_rect)
+            pygame.display.update()
+            self.fClock.tick(self.fps)
