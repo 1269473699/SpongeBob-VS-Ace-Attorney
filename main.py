@@ -1,6 +1,6 @@
 import pygame
 import sys
-from title.title import LogoPrinter,TitleInterface
+from title.title import LogoPrinter,TitleInterface,StartButton
 
 pygame.init()
 vInfo = pygame.display.Info()
@@ -13,7 +13,6 @@ if __name__ == '__main__':
 
     pygame.display.set_caption("海绵宝宝x逆转裁判")
     action = 0
-
     lp = LogoPrinter(width, height, screen)
     tp = TitleInterface(width, height, screen)
     if action == 0:
