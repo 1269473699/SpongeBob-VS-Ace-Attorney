@@ -15,6 +15,7 @@ if __name__ == '__main__':
     action = 0
     lp = LogoPrinter(width, height, screen)
     tp = TitleInterface(width, height, screen)
+    # action = 1
     if action == 0:
         lp.display_logo()
         action = action + 1
