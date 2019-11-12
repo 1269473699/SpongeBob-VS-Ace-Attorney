@@ -45,7 +45,7 @@ class LogoPrinter:
 class TitleInterface:
     def __init__(self, width, height, screen):
         self.screen = screen
-        self.top_title = pygame.image.load('resources/pics/titleBackground_ver1.jpg')
+        self.top_title = pygame.image.load('resources/pics/TitleBackgroundV1.jpg')
         self.bottom_title = pygame.image.load('resources/pics/UnderTheTitle.jpg')
         self.top_title = pygame.transform.scale(self.top_title, (width, int(0.5*height)))
         self.bottom_title = pygame.transform.scale(self.bottom_title, (width, int(0.5*height)))
@@ -61,7 +61,7 @@ class TitleInterface:
         button2_top = 0.75 * height - 0.5 * button_height
         button3_top = 0.875 * height - 0.5 * button_height
         button_left = 0.15 * width
-        for i in (0,1,2):
+        for i in (0, 1, 2):
             self.title_text[i] = pygame.transform.scale(self.title_text[i], (int(button_height * 0.7 * 3.93), int(button_height * 0.7)))
         self.title_text_rect = [self.title_text[0].get_rect(),
                                 self.title_text[0].get_rect(),
@@ -77,12 +77,11 @@ class TitleInterface:
         button_surfaces = [pygame.image.load('resources/pics/Jellyfish(origin).png'),
                            pygame.image.load('resources/pics/Jellyfish(on).png'),
                            pygame.image.load('resources/pics/Jellyfish(click).png')]
-        pygame.mixer.init()
-        onse1 = pygame.mixer.Sound("resources/music/Jellyfishh.wav")
-        onse2 = pygame.mixer.Sound("resources/music/Jellyfishc.wav")
-        self.stb1 = Button(button_width, button_height, screen, button_surfaces, button1_top, button_left, onse1, onse2)
-        self.stb2 = Button(button_width, button_height, screen, button_surfaces, button2_top, button_left, onse1, onse2)
-        self.stb3 = Button(button_width, button_height, screen, button_surfaces, button3_top, button_left, onse1, onse2)
+        sound1 = pygame.mixer.Sound("resources/sounds/JellyfishH.wav")
+        sound2 = pygame.mixer.Sound("resources/sounds/JellyfishC.wav")
+        self.stb1 = Button(button_width, button_height, screen, button_surfaces, button1_top, button_left, sound1, sound2)
+        self.stb2 = Button(button_width, button_height, screen, button_surfaces, button2_top, button_left, sound1, sound2)
+        self.stb3 = Button(button_width, button_height, screen, button_surfaces, button3_top, button_left, sound1, sound2)
 
     def display_title(self):
         pygame.mixer.music.load("resources/music/Title.mp3")

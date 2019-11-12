@@ -4,7 +4,7 @@ import pygame
 class Button:
     i = 0
 
-    def __init__(self, width, height, screen, surfaces, top, left, onse, clickse):  # surfaces是surface列表,i=0表示不按键，i=1表示悬浮，i=2表示点击
+    def __init__(self, width, height, screen, surfaces, top, left, hovered_sound, clicked_sound):  # surfaces是surface列表,i=0表示不按键，i=1表示悬浮，i=2表示点击
         self.surfaces = surfaces
         self.screen = screen
         for i in range(len(surfaces)):
@@ -12,8 +12,8 @@ class Button:
         self.button_rect = self.surfaces[0].get_rect()
         self.button_rect.top = top
         self.button_rect.left = left
-        self.onse = onse
-        self.clickse = clickse
+        self.hovered_sound = hovered_sound
+        self.clicked_sound = clicked_sound
 
     def display_button(self):
         self.screen.blit(self.surfaces[self.i], self.button_rect)
@@ -21,7 +21,7 @@ class Button:
     def respond_to_clicking(self, event):
         if event.pos[0] > self.button_rect.left and event.pos[0] < self.button_rect.left + self.button_rect.width and event.pos[1] > self.button_rect.top and event.pos[1] < self.button_rect.top + self.button_rect.height:
             self.i = 2
-            self.clickse.play(0)
+            self.clicked_sound.play()
             return True
         return False
 
@@ -29,7 +29,7 @@ class Button:
         if event.buttons[0] == 0:
             if event.pos[0] > self.button_rect.left and event.pos[0] < self.button_rect.left + self.button_rect.width and event.pos[1] > self.button_rect.top and event.pos[1] < self.button_rect.top + self.button_rect.height:
                 self.i = 1
-                self.onse.play(0)
+                self.hovered_sound.play()
             else:
                 self.i = 0
 
