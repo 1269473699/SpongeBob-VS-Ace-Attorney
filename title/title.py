@@ -45,28 +45,44 @@ class LogoPrinter:
 class TitleInterface:
     def __init__(self, width, height, screen):
         self.screen = screen
-        self.top_title = pygame.image.load('resources/pics/titleBackground.ver1.jpg')
+        self.top_title = pygame.image.load('resources/pics/titleBackground_ver1.jpg')
         self.bottom_title = pygame.image.load('resources/pics/UnderTheTitle.jpg')
         self.top_title = pygame.transform.scale(self.top_title, (width, int(0.5*height)))
         self.bottom_title = pygame.transform.scale(self.bottom_title, (width, int(0.5*height)))
         self.top_title_rect = self.top_title.get_rect()
         self.bottom_title_rect = self.bottom_title.get_rect()
         self.bottom_title_rect.top = 0.5*height
-        self.fps = 30
-        self.fClock = pygame.time.Clock()
+        self.title_text = [pygame.image.load('resources/pics/GameStart.png').convert_alpha(),
+                           pygame.image.load('resources/pics/ChooseChapter.png').convert_alpha(),
+                           pygame.image.load('resources/pics/GameExit.png').convert_alpha()]
         button_width = int(height * 0.25 * 0.4 * 0.9 / 1.65)
         button_height = int(0.25 * 0.9 * height * 0.4)
-        button1_top = 0.625*height - 0.5*button_height
-        button2_top = 0.75*height - 0.5*button_height
-        button3_top = 0.875*height - 0.5*button_height
-        button_left = 0.15*width
-
-        button_surfaces = [pygame.image.load('resources/pics/jellyfish(origin).png'),
-                           pygame.image.load('resources/pics/jellyfish(on).png'),
-                           pygame.image.load('resources/pics/jellyfish(click).png')]
-        self.stb1 = Button(button_width, button_height, screen, button_surfaces, button1_top, button_left)
-        self.stb2 = Button(button_width, button_height, screen, button_surfaces, button2_top, button_left)
-        self.stb3 = Button(button_width, button_height, screen, button_surfaces, button3_top, button_left)
+        button1_top = 0.625 * height - 0.5 * button_height
+        button2_top = 0.75 * height - 0.5 * button_height
+        button3_top = 0.875 * height - 0.5 * button_height
+        button_left = 0.15 * width
+        for i in (0,1,2):
+            self.title_text[i] = pygame.transform.scale(self.title_text[i], (int(button_height * 0.7 * 3.93), int(button_height * 0.7)))
+        self.title_text_rect = [self.title_text[0].get_rect(),
+                                self.title_text[0].get_rect(),
+                                self.title_text[0].get_rect()]
+        self.title_text_rect[0].top = 0.625 * height - 0.35 * button_height
+        self.title_text_rect[0].left = 0.33 * width
+        self.title_text_rect[1].top = 0.75 * height - 0.35 * button_height
+        self.title_text_rect[1].left = 0.33 * width
+        self.title_text_rect[2].top = 0.875 * height - 0.35 * button_height
+        self.title_text_rect[2].left = 0.33 * width
+        self.fps = 30
+        self.fClock = pygame.time.Clock()
+        button_surfaces = [pygame.image.load('resources/pics/Jellyfish(origin).png'),
+                           pygame.image.load('resources/pics/Jellyfish(on).png'),
+                           pygame.image.load('resources/pics/Jellyfish(click).png')]
+        pygame.mixer.init()
+        onse1 = pygame.mixer.Sound("resources/music/Jellyfishh.wav")
+        onse2 = pygame.mixer.Sound("resources/music/Jellyfishc.wav")
+        self.stb1 = Button(button_width, button_height, screen, button_surfaces, button1_top, button_left, onse1, onse2)
+        self.stb2 = Button(button_width, button_height, screen, button_surfaces, button2_top, button_left, onse1, onse2)
+        self.stb3 = Button(button_width, button_height, screen, button_surfaces, button3_top, button_left, onse1, onse2)
 
     def display_title(self):
         pygame.mixer.music.load("resources/music/Title.mp3")
@@ -91,5 +107,7 @@ class TitleInterface:
             self.stb1.display_button()
             self.stb2.display_button()
             self.stb3.display_button()
+            for i in(0,1,2):
+                self.screen.blit(self.title_text[i],self.title_text_rect[i])
             pygame.display.update()
             self.fClock.tick(self.fps)

@@ -1,6 +1,6 @@
 import pygame
 import sys
-from title.title import LogoPrinter,TitleInterface,StartButton
+from title.title import LogoPrinter,TitleInterface
 
 pygame.init()
 vInfo = pygame.display.Info()
