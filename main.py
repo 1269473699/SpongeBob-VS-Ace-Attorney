@@ -1,6 +1,7 @@
 import pygame
 import sys
 from title.title import LogoPrinter,TitleInterface
+from util.DialogBox import DialogBox
 
 pygame.init()
 vInfo = pygame.display.Info()
@@ -15,11 +16,18 @@ if __name__ == '__main__':
     action = 0
     lp = LogoPrinter(width, height, screen)
     tp = TitleInterface(width, height, screen)
-    # action = 1
+    temp = int(0.125*height)
+    temp2 = int(0.375*height)
+    dl = DialogBox(screen, width, temp, temp2, 0)
+    action = 1
     if action == 0:
         lp.display_logo()
         action = action + 1
     if action == 1:
         tp.display_title()
+    action = 2
+    screen.fill((0, 0, 0))
+    if action == 2:
+        dl.test()
 
 

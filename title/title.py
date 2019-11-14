@@ -96,7 +96,8 @@ class TitleInterface:
                     self.stb2.respond_to_hovering(event)
                     self.stb3.respond_to_hovering(event)
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    self.stb1.respond_to_clicking(event)
+                    if self.stb1.respond_to_clicking(event):
+                        return
                     self.stb2.respond_to_clicking(event)
                     self.stb3.respond_to_clicking(event)
 
@@ -106,7 +107,7 @@ class TitleInterface:
             self.stb1.display_button()
             self.stb2.display_button()
             self.stb3.display_button()
-            for i in(0,1,2):
-                self.screen.blit(self.title_text[i],self.title_text_rect[i])
+            for i in(0, 1, 2):
+                self.screen.blit(self.title_text[i], self.title_text_rect[i])
             pygame.display.update()
             self.fClock.tick(self.fps)
