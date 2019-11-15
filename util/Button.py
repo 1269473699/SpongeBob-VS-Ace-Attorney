@@ -3,7 +3,7 @@ import pygame
 
 class Button:
     i = 0
-
+    sound_control = 0
     def __init__(self, width, height, screen, surfaces, top, left, hovered_sound, clicked_sound):  # surfaces是surface列表,i=0表示不按键，i=1表示悬浮，i=2表示点击
         self.surfaces = surfaces
         self.screen = screen
@@ -29,7 +29,11 @@ class Button:
         if event.buttons[0] == 0:
             if event.pos[0] > self.button_rect.left and event.pos[0] < self.button_rect.left + self.button_rect.width and event.pos[1] > self.button_rect.top and event.pos[1] < self.button_rect.top + self.button_rect.height:
                 self.i = 1
-                self.hovered_sound.play()
+                if self.sound_control == 0:
+                    self.hovered_sound.play()
+                self.sound_control = 1
+
             else:
                 self.i = 0
+                self.sound_control = 0
 
