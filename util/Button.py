@@ -18,6 +18,7 @@ class Button:
     def display_button(self):
         self.screen.blit(self.surfaces[self.i], self.button_rect)
 
+
     def respond_to_clicking(self, event):
         if event.pos[0] > self.button_rect.left and event.pos[0] < self.button_rect.left + self.button_rect.width and event.pos[1] > self.button_rect.top and event.pos[1] < self.button_rect.top + self.button_rect.height:
             self.i = 2
@@ -36,4 +37,11 @@ class Button:
             else:
                 self.i = 0
                 self.sound_control = 0
+
+    def respond_to_up(self, event):
+        self.i = 0
+        if event.pos[0] > self.button_rect.left and event.pos[0] < self.button_rect.left + self.button_rect.width and event.pos[1] > self.button_rect.top and event.pos[1] < self.button_rect.top + self.button_rect.height:
+            return True
+        else:
+            return True
 

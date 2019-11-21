@@ -89,8 +89,9 @@ class TitleInterface:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP:
-                    if event.button == 1 and False:
-                        print('nextPart')
+                    self.stb1.respond_to_up(event)
+                    self.stb2.respond_to_up(event)
+                    self.stb3.respond_to_up(event)
                 elif event.type == pygame.MOUSEMOTION:
                     self.stb1.respond_to_hovering(event)
                     self.stb2.respond_to_hovering(event)
