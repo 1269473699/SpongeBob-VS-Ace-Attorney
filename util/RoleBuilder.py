@@ -9,6 +9,8 @@ class RoleBuilder:
         strs = []
         if role == "MayaStand":
             strs = ["resources/pics/MayaStand1.gif", "resources/pics/MayaStand2.gif", "resources/pics/MayaStand3.gif"]
+        if role =="MayaLower":
+            strs = ["resources/pics/MayaLower1.gif", "resources/pics/MayaLower2.gif", "resources/pics/MayaLower3.gif"]
         for i in range(len(strs)):
             self.roles.append(pygame.image.load(strs[i]).convert_alpha())
             self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.5 * 1.5), int(height * 0.5)))

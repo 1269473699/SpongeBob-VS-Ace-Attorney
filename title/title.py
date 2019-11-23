@@ -29,7 +29,7 @@ class LogoPrinter:
             pygame.display.update()
             self.fClock.tick(self.fps)
 
-        sleep(2)
+        sleep(1)
 
         for i in range(255, -1, -8):
             self.whu.set_alpha(i)
@@ -39,7 +39,6 @@ class LogoPrinter:
             self.screen.blit(self.member, self.member_rect)
             pygame.display.update()
             self.fClock.tick(self.fps)
-        sleep(1)
 
 
 class TitleInterface:

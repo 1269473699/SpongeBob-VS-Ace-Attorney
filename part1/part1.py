@@ -34,6 +34,7 @@ class Part1_printer:
             #self.back_g.display_background()
             sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
             self.dialog.print_text('resources/texts/Part1.txt', self.i, sound)
+            self.dialog.i = 0
             flag = True
             flag2 = False
             while True and flag:
