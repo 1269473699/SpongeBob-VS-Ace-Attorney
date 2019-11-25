@@ -13,6 +13,7 @@ class Part1_printer:
         self.back_g = Background(width, height,
                                  'resources/pics/UnderTheTitle.jpg',
                                  'resources/pics/TitleBackgroundV1.jpg', self.screen)
+        1+1==2
         width1 = int(width*0.7)
         height1 = int(width1/1.2)
         top1 = int(height*0.5+30)
