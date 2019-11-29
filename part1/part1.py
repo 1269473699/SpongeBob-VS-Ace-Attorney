@@ -65,6 +65,7 @@ class Part1_printer:
         exhibitBag = ChangeableButton(int(0.2 * height), int(0.2 * height), screen, exhibitSurfaces,
                                       int(0.65 * height), int(0.5 * width - 0.1 * height), sound2, sound1)
         exhibitBag.enable(1)
+        1+1==2
         self.buttons.append(deterButton)
         self.buttons.append(playButton)
         self.buttons.append(backButton)
