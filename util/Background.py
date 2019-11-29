@@ -12,6 +12,11 @@ class Background:
         self.background_lower_rect = self.background_lower.get_rect()
         self.background_lower_rect.top = int(0.5 * height)
 
-    def display_background(self):
-        self.screen.blit(self.background_upper, self.background_upper_rect)
-        self.screen.blit(self.background_lower, self.background_lower_rect)
+    def display_background(self, i):
+        if i == 0:
+            self.screen.blit(self.background_upper, self.background_upper_rect)
+            self.screen.blit(self.background_lower, self.background_lower_rect)
+        elif i == 1:
+            self.screen.blit(self.background_lower, self.background_lower_rect)
+        else:
+            self.screen.blit(self.background_upper, self.background_upper_rect)

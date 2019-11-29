@@ -45,9 +45,9 @@ class DialogBox:
         self.role_rect.left = 0
         '''
         self.i = 0
-
+        #self.condition = 0
     def clean_dialog(self): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
-        self.back_g.display_background()
+        self.back_g.display_background(0)
         self.screen.blit(self.roles[self.i//self.speed], self.role_rects[self.i//self.speed])
         self.i = (self.i+1) % (len(self.roles)*self.speed)
         for button in self.buttons:
@@ -79,9 +79,25 @@ class DialogBox:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    for button in self.buttons:
+                    '''for button in self.buttons:
                         if button.respond_to_clicking(event):
-                            i = (len(dialogue)-1)*self.speed
+                            i = (len(dialogue)-1)*self.speed'''
+                    if self.buttons[0].respond_to_clicking(event):
+                        None
+                    elif self.buttons[1].respond_to_clicking(event):
+                        i = (len(dialogue) - 1) * self.speed
+                    elif self.buttons[2].respond_to_clicking(event):
+                        None
+                    elif self.buttons[3].respond_to_clicking(event):
+                        self.buttons[3].enable(0)
+                        self.buttons[4].enable(0)
+                        self.buttons[5].enable(1)
+                    elif self.buttons[4].respond_to_clicking(event):
+                        None
+                    elif self.buttons[5].respond_to_clicking(event):
+                        self.buttons[3].enable(1)
+                        self.buttons[4].enable(1)
+                        self.buttons[5].enable(0)
                 elif event.type == pygame.MOUSEBUTTONUP:
                     for button in self.buttons:
                         if button.respond_to_up(event):

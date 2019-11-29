@@ -53,8 +53,8 @@ class ChangeableButton(Button):
     def display_button(self):
         if self.condition == 1:
             self.screen.blit(self.surfaces[self.i], self.button_rect)
-        else:
-            self.screen.blit(self.surfaces[3], self.button_rect)
+        #else:
+
 
     def respond_to_clicking(self, event):
         if self.condition == 1:

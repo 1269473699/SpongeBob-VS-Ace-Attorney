@@ -88,16 +88,36 @@ class Part1_printer:
                     if event.type == pygame.QUIT:
                         sys.exit()
                     elif event.type == pygame.MOUSEBUTTONDOWN:
-                        for button in self.buttons:
-                            if button.respond_to_clicking(event):
-                                self.i = self.i + 1
-                                button.display_button()
-                                flag2 = True
-                                break
+                        #for button in self.buttons:
+                        if self.buttons[0].respond_to_clicking(event): #威慑
+                            None
+                        elif self.buttons[1].respond_to_clicking(event): #播放
+                            self.i = self.i + 1
+                            flag2 = True
+                        elif self.buttons[2].respond_to_clicking(event): #后退
+                            None
+                        elif self.buttons[3].respond_to_clicking(event): #返回
+                            self.buttons[3].enable(0)
+                            self.buttons[4].enable(0)
+                            self.buttons[5].enable(1)
+                            self.buttons[2].enable(0)
+                        elif self.buttons[4].respond_to_clicking(event): #指证
+                            None
+                        elif self.buttons[5].respond_to_clicking(event): #证物袋
+                            self.buttons[3].enable(1)
+                            self.buttons[4].enable(1)
+                            self.buttons[5].enable(0)
+                            self.buttons[2].enable(1)
+
                     elif event.type == pygame.MOUSEBUTTONUP:
                         for button in self.buttons:
-                            button.display_button()
-                            if button.respond_to_up(event):
-                                if flag2:
-                                    flag = False
-                    pygame.display.update()
+                            if button.i == 2:
+                                button.i = 1
+                        if self.buttons[1].respond_to_up(event):
+                            if flag2:
+                                flag = False
+                self.back_g.display_background(1)
+                #pygame.display.update()
+                for button in self.buttons:
+                        button.display_button()
+                pygame.display.update()
