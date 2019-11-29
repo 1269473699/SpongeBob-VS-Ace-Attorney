@@ -46,7 +46,7 @@ class DialogBox:
         '''
         self.i = 0
 
-    def clean_dialog(self):
+    def clean_dialog(self): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
         self.back_g.display_background()
         self.screen.blit(self.roles[self.i//self.speed], self.role_rects[self.i//self.speed])
         self.i = (self.i+1) % (len(self.roles)*self.speed)
@@ -61,12 +61,11 @@ class DialogBox:
 
 
     def print_text(self, path, line_no, sound):
-        text = linecache.getline(path, line_no)
-        texts = text.split("$")
-        color = texts[1]
+        text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
+        texts = text.split("$") #以$为分隔符将一行分为个字符串
+        color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
         dialogue = texts[2]
         self.speed = eval(texts[3])
-        texts[4].rstrip()
         builder = RoleBuilder(texts[4], self.height)
         self.roles, self.role_rects = builder.get_roles()
         self.sayer_text = texts[0]

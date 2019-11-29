@@ -5,10 +5,10 @@ class Button:
     i = 0
     sound_control = 0
     def __init__(self, width, height, screen, surfaces, top, left, hovered_sound, clicked_sound):  # surfaces是surface列表,i=0表示不按键，i=1表示悬浮，i=2表示点击
-        self.surfaces = surfaces
+        self.surfaces = []
         self.screen = screen
         for i in range(len(surfaces)):
-            self.surfaces[i] = pygame.transform.scale(self.surfaces[i], (width, height))
+            self.surfaces.append(pygame.transform.scale(surfaces[i], (width ,height)))
         self.button_rect = self.surfaces[0].get_rect()
         self.button_rect.top = top
         self.button_rect.left = left
@@ -54,7 +54,7 @@ class ChangeableButton(Button):
         if self.condition == 1:
             self.screen.blit(self.surfaces[self.i], self.button_rect)
         else:
-            self.screen.blit(self.surfaces[4], self.button_rect)
+            self.screen.blit(self.surfaces[3], self.button_rect)
 
     def respond_to_clicking(self, event):
         if self.condition == 1:
