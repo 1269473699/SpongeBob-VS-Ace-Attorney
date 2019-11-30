@@ -45,9 +45,9 @@ class DialogBox:
         self.role_rect.left = 0
         '''
         self.i = 0
-
-    def clean_dialog(self):
-        self.back_g.display_background()
+        #self.condition = 0
+    def clean_dialog(self): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
+        self.back_g.display_background(0)
         self.screen.blit(self.roles[self.i//self.speed], self.role_rects[self.i//self.speed])
         self.i = (self.i+1) % (len(self.roles)*self.speed)
         for button in self.buttons:
@@ -61,12 +61,11 @@ class DialogBox:
 
 
     def print_text(self, path, line_no, sound):
-        text = linecache.getline(path, line_no)
-        texts = text.split("$")
-        color = texts[1]
+        text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
+        texts = text.split("$") #以$为分隔符将一行分为个字符串
+        color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
         dialogue = texts[2]
         self.speed = eval(texts[3])
-        texts[4].rstrip()
         builder = RoleBuilder(texts[4], self.height)
         self.roles, self.role_rects = builder.get_roles()
         self.sayer_text = texts[0]
@@ -80,9 +79,25 @@ class DialogBox:
                 if event.type == pygame.QUIT:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    for button in self.buttons:
+                    '''for button in self.buttons:
                         if button.respond_to_clicking(event):
-                            i = (len(dialogue)-1)*self.speed
+                            i = (len(dialogue)-1)*self.speed'''
+                    if self.buttons[0].respond_to_clicking(event):
+                        None
+                    elif self.buttons[1].respond_to_clicking(event):
+                        i = (len(dialogue) - 1) * self.speed
+                    elif self.buttons[2].respond_to_clicking(event):
+                        None
+                    elif self.buttons[3].respond_to_clicking(event):
+                        self.buttons[3].enable(0)
+                        self.buttons[4].enable(0)
+                        self.buttons[5].enable(1)
+                    elif self.buttons[4].respond_to_clicking(event):
+                        None
+                    elif self.buttons[5].respond_to_clicking(event):
+                        self.buttons[3].enable(1)
+                        self.buttons[4].enable(1)
+                        self.buttons[5].enable(0)
                 elif event.type == pygame.MOUSEBUTTONUP:
                     for button in self.buttons:
                         if button.respond_to_up(event):
