@@ -2,6 +2,7 @@ import pygame
 from util.DialogBox import DialogBox
 from util.Background import Background
 from util.Button import Button, ChangeableButton
+from util.Evidence import Evidence
 import sys
 
 
@@ -9,6 +10,7 @@ class Part1_printer:
 
     def __init__(self, screen, width, height):
         self.i = 1
+        self.condition = 0
         self.screen = screen
         self.fps = 30
         self.fClock = pygame.time.Clock()
@@ -77,8 +79,13 @@ class Part1_printer:
         self.buttons.append(exhibitButton)
         self.buttons.append(exhibitBag)
 
-        self.dialog_p1 = DialogBox(screen, width, height, self.back_p1, self.buttons)
-        self.dialog_b = DialogBox(screen, width, height, self.black_bg, self.buttons)
+        self.evidenceList = []
+        self.evidenceList.append(Evidence('resources/pics/Evidence1.png', 'pictureOfCanteen', height, width, screen))
+        self.evidenceList.append(Evidence('resources/pics/Evidence2.png', 'autopsyReport', height, width, screen))
+        self.evidenceList.append(Evidence('resources/pics/Evidence3.png', 'pictureOfKitchen', height, width, screen))
+
+        self.dialog_p1 = DialogBox(screen, width, height, self.back_p1, self.buttons, self.evidenceList)
+        self.dialog_b = DialogBox(screen, width, height, self.black_bg, self.buttons, self.evidenceList)
         self.back_g = self.black_bg
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
@@ -87,6 +94,7 @@ class Part1_printer:
         pygame.mixer.music.load("resources/music/Memory.mp3")
         pygame.mixer.music.play(-1)
         self.i = 1
+        evidence = 0
         while True:
 
             self.dialog.print_text('resources/texts/Part1.txt', self.i, self.sound)
@@ -101,7 +109,11 @@ class Part1_printer:
                         if self.buttons[0].respond_to_clicking(event): #威慑
                             None
                         elif self.buttons[1].respond_to_clicking(event): #播放
-                            self.i = self.i + 1
+                            if self.condition == 0:
+                                self.i = self.i + 1
+                                flag2 = True
+                            else:
+                                evidence = (evidence + 1) % len(self.evidenceList)
                             if self.i == 11:
                                 self.dialog = self.dialog_p1
                                 self.back_g = self.back_p1
@@ -112,9 +124,9 @@ class Part1_printer:
                                 pygame.mixer.music.play(-1)
                             if self.i == 12:
                                 self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
-                            flag2 = True
+
                         elif self.buttons[2].respond_to_clicking(event): #后退
-                            None
+                            evidence = (evidence - 1) % len(self.evidenceList)
                         elif self.buttons[3].respond_to_clicking(event): #返回
                             self.buttons[3].enable(0)
                             self.buttons[4].enable(0)
@@ -135,8 +147,11 @@ class Part1_printer:
                         if self.buttons[1].respond_to_up(event):
                             if flag2:
                                 flag = False
+                self.condition = self.buttons[3].condition
                 self.back_g.display_background(1)
                 #pygame.display.update()
+                if self.condition == 1:
+                    self.evidenceList[evidence].display_evidence()
                 for button in self.buttons:
                         button.display_button()
                 pygame.display.update()

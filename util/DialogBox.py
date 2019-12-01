@@ -4,13 +4,14 @@ import pygame
 import pygame.freetype
 from util.RoleBuilder import RoleBuilder
 from util import Background
+from util.Evidence import Evidence
 from time import sleep
 
 
 class DialogBox:
     roles, role_rects = [], []
     speed = 1
-    def __init__(self, screen, width, height, background, buttons):
+    def __init__(self, screen, width, height, background, buttons, evidenceList):
         '''self.top = top
         self.left = left'''
         self.buttons = buttons
@@ -37,6 +38,7 @@ class DialogBox:
         self.text_pos = (self.font_size, mtop)
         mtop = int((self.dialog_sayer_rect.height - self.sayer_font_size) / 2) + self.dialog_sayer_rect.top
         self.sayer_pos = (self.font_size, mtop)
+        self.evidenceList = evidenceList
         '''
         self.role = pygame.image.load('resources/pics/MayaStand1.gif').convert_alpha()
         self.role = pygame.transform.scale(self.role, (int(height*0.5*1.5), int(height*0.5)))
@@ -45,7 +47,7 @@ class DialogBox:
         self.role_rect.left = 0
         '''
         self.i = 0
-        #self.condition = 0
+        self.condition = 0
     def clean_dialog(self, puncutaion): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
         self.back_g.display_background(0)
         if len(self.roles) >= 1:
@@ -75,6 +77,7 @@ class DialogBox:
         self.roles, self.role_rects = builder.get_roles()
         self.sayer_text = texts[0]
         i = 0
+        evidence = 0
         while i < self.speed*len(dialogue):
             punctuation = False
             words = dialogue[:i//self.speed+1:1]
@@ -90,24 +93,32 @@ class DialogBox:
                     if self.buttons[0].respond_to_clicking(event):
                         None
                     elif self.buttons[1].respond_to_clicking(event):
-                        i = (len(dialogue) - 1) * self.speed
+                        if self.condition == 0:
+                            i = (len(dialogue) - 1) * self.speed
+                        else:
+                            evidence = (evidence + 1) % len(self.evidenceList)
                     elif self.buttons[2].respond_to_clicking(event):
-                        None
+                        evidence = (evidence - 1) % len(self.evidenceList)
                     elif self.buttons[3].respond_to_clicking(event):
                         self.buttons[3].enable(0)
                         self.buttons[4].enable(0)
                         self.buttons[5].enable(1)
+                        self.buttons[2].enable(0)
                     elif self.buttons[4].respond_to_clicking(event):
                         None
                     elif self.buttons[5].respond_to_clicking(event):
                         self.buttons[3].enable(1)
                         self.buttons[4].enable(1)
                         self.buttons[5].enable(0)
+                        self.buttons[2].enable(1)
                 elif event.type == pygame.MOUSEBUTTONUP:
                     for button in self.buttons:
                         if button.respond_to_up(event):
                             button.display_button()
                             None
+            self.condition = self.buttons[3].condition
+            if self.condition == 1:
+                self.evidenceList[evidence].display_evidence()
             pygame.display.update()
             sound.stop()
 
