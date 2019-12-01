@@ -1,10 +1,11 @@
 import pygame
 
-
 class Background:
     def __init__(self, width, height, path1, path2, screen):
+        self.fps = 30
+        self.fClock = pygame.time.Clock()
         self.screen = screen
-        self.background_upper = pygame.image.load(path1)
+        self.background_upper = pygame.image.load(path1).convert()
         self.background_lower = pygame.image.load(path2)
         self.background_upper = pygame.transform.scale(self.background_upper, (width, int(0.5 * height)))
         self.background_lower = pygame.transform.scale(self.background_lower, (width, int(0.5 * height)))
@@ -20,3 +21,11 @@ class Background:
             self.screen.blit(self.background_lower, self.background_lower_rect)
         else:
             self.screen.blit(self.background_upper, self.background_upper_rect)
+
+    def fade_in(self):
+        for i in range(0, 256, 6):
+            self.background_upper.set_alpha(i)
+            self.screen.blit(self.background_upper, self.background_upper_rect)
+            pygame.display.update()
+            self.fClock.tick(self.fps)
+

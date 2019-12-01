@@ -6,14 +6,19 @@ import sys
 
 
 class Part1_printer:
+
     def __init__(self, screen, width, height):
         self.i = 1
         self.screen = screen
         self.fps = 30
         self.fClock = pygame.time.Clock()
-        self.back_g = Background(width, height,
-                                 'resources/pics/UnderTheTitle.jpg',
+        self.back_p1 = Background(width, height,
+                                 'resources/pics/Lounge.png',
                                  'resources/pics/Background2.jpg', self.screen)
+        self.black_bg = Background(width, height,
+                                 'resources/pics/Black.png',
+                                 'resources/pics/Background2.jpg', self.screen)
+
         width1 = int(width * 0.7)
         height1 = int(width1 / 1.2)
         top1 = int(height * 0.5 + 30)
@@ -65,22 +70,26 @@ class Part1_printer:
         exhibitBag = ChangeableButton(int(0.2 * height), int(0.2 * height), screen, exhibitSurfaces,
                                       int(0.65 * height), int(0.5 * width - 0.1 * height), sound2, sound1)
         exhibitBag.enable(1)
-        1+1==2
         self.buttons.append(deterButton)
         self.buttons.append(playButton)
         self.buttons.append(backButton)
         self.buttons.append(returnButton)
         self.buttons.append(exhibitButton)
         self.buttons.append(exhibitBag)
-        self.dialog = DialogBox(screen, width, height, self.back_g, self.buttons)
+
+        self.dialog_p1 = DialogBox(screen, width, height, self.back_p1, self.buttons)
+        self.dialog_b = DialogBox(screen, width, height, self.black_bg, self.buttons)
+        self.back_g = self.black_bg
+        self.dialog = self.dialog_b
+        self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
 
     def display_part1(self):
+        pygame.mixer.music.load("resources/music/Memory.mp3")
+        pygame.mixer.music.play(-1)
+        self.i = 1
         while True:
-            # self.screen.fill((255, 255, 255))
-            # self.back_g.display_background()
-            sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
-            self.dialog.print_text('resources/texts/Part1.txt', self.i, sound)
-            self.dialog.i = 0
+
+            self.dialog.print_text('resources/texts/Part1.txt', self.i, self.sound)
             flag = True
             flag2 = False
             while True and flag:
@@ -93,6 +102,16 @@ class Part1_printer:
                             None
                         elif self.buttons[1].respond_to_clicking(event): #播放
                             self.i = self.i + 1
+                            if self.i == 11:
+                                self.dialog = self.dialog_p1
+                                self.back_g = self.back_p1
+                                self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
+                                self.back_g.fade_in()
+                                pygame.mixer.music.stop()
+                                pygame.mixer.music.load("resources/music/Lounge.mp3")
+                                pygame.mixer.music.play(-1)
+                            if self.i == 12:
+                                self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
                             flag2 = True
                         elif self.buttons[2].respond_to_clicking(event): #后退
                             None

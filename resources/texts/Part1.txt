@@ -1,2 +1,63 @@
-真宵$white$本小组需求分析展示到此结束$3$MayaStand$
-真宵$red$谢谢大家！$6$MayaLower$
+$white$我叫成步堂 龙一。 是一名律师。$4$$
+$white$或者，我可以自信地说：$4$$
+$white$我是一名已有十余年辩护历史的律师。$3$$
+$#6495ED$（虽然我好像中途停职了好几年）$3$$
+$white$十余年中，我遇见了形形色色的被告人$4$$
+$white$每当我回忆起他们时，$4$$
+$white$只有一位被告人最为特殊。$3$$
+$white$不， 不应该称他为被告人。$4$$
+$white$因为他根本...  不是人。$4$$
+$red$他是一个海绵！$4$$
+$green$XXXX年XX月XX日 法庭第二休息室$6$$
+真宵$white$成步堂君！$5$MayaSmile$
+真宵$white$哎... .........今天的成步堂君怎么好像不一样？$4$MayaChin$
+真宵$white$头上的刺好像都要掉了一样！$4$MayaLower$
+成步堂$white$...$4$$
+真宵$white$成步堂君？$4$MayaLower$
+成步堂$white$...$4$$
+真宵$white$成步堂君！$4$MayaExcited$
+成步堂$white$啊...啊！在！$4$$
+真宵$white$好啦成步堂君！马上就要开庭了！$4$MayaExcited$$
+成步堂$white$...可是被告人还没有来呢...$4$$
+$white$...呜呜呜$4$$
+真宵$white$？$4$MayaSurprised$$
+$white$...呜呜呜...呜呜！$4$$
+真宵$white$我好像听到了什么断气的声音...$4$MayaSurprised$$
+$white$呜呜呜呜呜！$4$$
+海绵宝宝$white$呜呜呜呜呜呜呜！你们为什么要这样对我！$4$SpongeBobCry$$
+海绵宝宝$white$不仅把我从海里捞出来，还带到这种可怕的地方！$4$SpongeBobCry$$
+真宵$white$哈？？？？？？？？？？$3$MayaShocked$$
+真宵$white$地上那个黄黄的方块说话了？！$4$MayaSurprised$$
+成步堂$white$啊嗯...这个世界已经没有什么稀奇的事情了$4$$
+成步堂$#6495ED$（这个灵媒师打扮的咋咋呼呼的女孩是我的..助手）$4$MayaSurprisedIntro$
+成步堂$#6495ED$（我接到这个委托的时候，）$4$MayaSurprisedIntro$
+成步堂$#6495ED$（她还在瀑布下做所谓的修行.）$4$MayaSurprisedIntro$
+成步堂$#6495ED$（大概还不知道现在这个黄黄的东西已经是我们的...）$4$MayaSurprisedIntro$
+成步堂$red$（当事人）$4$$
+成步堂$white$那个...海绵宝宝先生？我可以再确认一下案情吗？$4$$
+海绵宝宝$white$呜呜呜呜呜呜呜！$2$SpongeBobCry$$
+真宵$white$海绵宝宝先生？难道...$3$MayaSurprised$$
+真宵$white$这个海绵是我们这次的被告？！$3$MayaShocked$$
+成步堂$white$总之...大概就是这样。$4$$
+成步堂$white$不知道是哪个编剧的恶作剧，$4$$
+成步堂$white$让他从几千米的海底被抓出来起诉。$4$$
+成步堂$red$罪名是故意杀人。$4$$
+真宵$white$.........$4$MayaSurprised$$
+真宵$white$.........$4$MayaSurprised$$
+真宵$white$我想我可以理解...$4$MayaSurprised$$
+成步堂$#6495ED$（你现在也变得和平时不太一样了）$4$$
+成步堂$white$那么，海绵宝宝先生！$4$$
+海绵宝宝$gold$我准备好了！$3$SpongeBobSmile$$
+真宵$white$这个生物的情绪好像变化太快了点..$4$MayaChin$$
+成步堂$white$一周前，你和往常一样在蟹堡王工作。$4$SpongeBobSmileIntro$
+成步堂$white$你一直在厨房里煎蟹黄堡，$4$SpongeBobSmileIntro$
+成步堂$white$别的什么也没做，等你反应过来，$3$SpongeBobSmileIntro$
+成步堂$white$已经被逮捕了，犯罪嫌疑是毒杀。$4$SpongeBobSmileIntro$
+海绵宝宝$white$没错！毒杀！$2$SpongeBobSmile$$
+海绵宝宝$white$做好手中的每一个蟹黄堡，$2$SpongeBobSmile$$
+海绵宝宝$white$是我的人生准则！$2$SpongeBobSmile$$
+海绵宝宝$white$别的我什么也不管什么也没注意到！$2$SpongeBobSmile$$
+真宵$white$...好像没有用的样子$4$MayaChin$$
+真宵$white$既然这样，一切到法庭上再去解决吧！$4$MayaExcited$$
+真宵$white$成步堂君，越是在最艰难的时刻越要微笑！$4$MayaExcited$$
+成步堂$white$哈哈哈...已经习惯了这种从零开始辩护的局面...$4$$

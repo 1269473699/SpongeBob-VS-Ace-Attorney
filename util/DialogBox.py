@@ -20,7 +20,7 @@ class DialogBox:
         #self.rect = self.surface.get_rect()
         self.fps = 30
         self.fClock = pygame.time.Clock()
-        self.f = pygame.freetype.Font('resources/fonts/站酷文艺体.ttf', 36)
+        self.f = pygame.freetype.Font('resources/fonts/方正粗圆.ttf', 36)
         self.dialog_sayer = pygame.image.load('resources/pics/DialogBox_sayer.png').convert_alpha()
         self.dialog_sayer = pygame.transform.scale(self.dialog_sayer, (int(width * 0.25), int(0.125 * 0.35 * height)))
         self.dialog_text = pygame.image.load('resources/pics/DialogBox_text.png').convert_alpha()
@@ -46,10 +46,12 @@ class DialogBox:
         '''
         self.i = 0
         #self.condition = 0
-    def clean_dialog(self): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
+    def clean_dialog(self, puncutaion): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
         self.back_g.display_background(0)
-        self.screen.blit(self.roles[self.i//self.speed], self.role_rects[self.i//self.speed])
-        self.i = (self.i+1) % (len(self.roles)*self.speed)
+        if len(self.roles) >= 1:
+            self.screen.blit(self.roles[(self.i)//self.speed], self.role_rects[(self.i)//self.speed])
+            if puncutaion == False:
+                self.i = (self.i+1) % (len(self.roles)*self.speed)
         for button in self.buttons:
             button.display_button()
         if self.dialog_text != "":
@@ -61,6 +63,9 @@ class DialogBox:
 
 
     def print_text(self, path, line_no, sound):
+        punctuations = ('。', '：', '、', '！', '，', '（', '）', '.')
+        global punctuation
+        punctuation = False
         text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
         texts = text.split("$") #以$为分隔符将一行分为个字符串
         color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
@@ -71,7 +76,7 @@ class DialogBox:
         self.sayer_text = texts[0]
         i = 0
         while i < self.speed*len(dialogue):
-            self.clean_dialog()
+            punctuation = False
             words = dialogue[:i//self.speed+1:1]
             self.f.render_to(self.screen, self.text_pos, words, fgcolor=pygame.Color(color),
                              size=self.font_size)
@@ -105,9 +110,19 @@ class DialogBox:
                             None
             pygame.display.update()
             sound.stop()
-            sound.play()
+
+            if words[len(words)-1] not in punctuations:
+                sound.play()
+            else:
+                punctuation = True
+            self.clean_dialog(punctuation)
             i = i+1
             self.fClock.tick(self.fps)
+        self.i = 0
+        self.clean_dialog(False)
+        pygame.display.update()
+        self.f.render_to(self.screen, self.text_pos, dialogue, fgcolor=pygame.Color(color),
+                         size=self.font_size)
 
         for button in self.buttons:
             if button.i == 2:
