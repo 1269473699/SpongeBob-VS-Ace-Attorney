@@ -54,6 +54,8 @@ class DialogBox:
             self.screen.blit(self.roles[(self.i)//self.speed], self.role_rects[(self.i)//self.speed])
             if puncutaion == False:
                 self.i = (self.i+1) % (len(self.roles)*self.speed)
+        if self.condition == 1:
+            self.evidenceList[self.evidence].display_evidence()
         for button in self.buttons:
             button.display_button()
         if self.dialog_text != "":
@@ -62,6 +64,7 @@ class DialogBox:
             self.screen.blit(self.dialog_sayer, self.dialog_sayer_rect)
             self.f.render_to(self.screen, self.sayer_pos, self.sayer_text, fgcolor=(255, 255, 255),
                              size=self.sayer_font_size)
+
 
 
     def print_text(self, path, line_no, sound):
@@ -77,7 +80,7 @@ class DialogBox:
         self.roles, self.role_rects = builder.get_roles()
         self.sayer_text = texts[0]
         i = 0
-        evidence = 0
+        self.evidence = 0
         while i < self.speed*len(dialogue):
             punctuation = False
             words = dialogue[:i//self.speed+1:1]
@@ -96,9 +99,9 @@ class DialogBox:
                         if self.condition == 0:
                             i = (len(dialogue) - 1) * self.speed
                         else:
-                            evidence = (evidence + 1) % len(self.evidenceList)
+                            self.evidence = (self.evidence + 1) % len(self.evidenceList)
                     elif self.buttons[2].respond_to_clicking(event):
-                        evidence = (evidence - 1) % len(self.evidenceList)
+                        self.evidence = (self.evidence - 1) % len(self.evidenceList)
                     elif self.buttons[3].respond_to_clicking(event):
                         self.buttons[3].enable(0)
                         self.buttons[4].enable(0)
@@ -117,8 +120,6 @@ class DialogBox:
                             button.display_button()
                             None
             self.condition = self.buttons[3].condition
-            if self.condition == 1:
-                self.evidenceList[evidence].display_evidence()
             pygame.display.update()
             sound.stop()
 
@@ -131,9 +132,10 @@ class DialogBox:
             self.fClock.tick(self.fps)
         self.i = 0
         self.clean_dialog(False)
-        pygame.display.update()
         self.f.render_to(self.screen, self.text_pos, dialogue, fgcolor=pygame.Color(color),
                          size=self.font_size)
+
+        pygame.display.update()
 
         for button in self.buttons:
             if button.i == 2:
@@ -142,4 +144,5 @@ class DialogBox:
                         if event.type == pygame.MOUSEBUTTONUP:
                             button.respond_to_up(event)
                             button.display_button()
+
                             return
