@@ -34,6 +34,35 @@ class RoleBuilder:
                     "resources/pics/SpongeBobSmile3.png"]
         elif role == "SpongeBobSmileIntro":
             strs = ["resources/pics/SpongeBobSmile1.png"]
+        elif role == "JudgeNormal":
+            strs = ["resources/pics/JudgeNormal1.gif", "resources/pics/JudgeNormal2.gif",
+                    "resources/pics/JudgeNormal3.gif","resources/pics/JudgeNormal4.gif",
+                    "resources/pics/JudgeNormal5.gif","resources/pics/JudgeNormal6.gif"]
+        elif role == "JudgeNod":
+            strs = ["resources/pics/JudgeNod1.gif", "resources/pics/JudgeNod2.gif",
+                    "resources/pics/JudgeNod3.gif", "resources/pics/JudgeNod4.gif",
+                    "resources/pics/JudgeNod5.gif"]
+        elif role == "JudgeDeny":
+            strs = ["resources/pics/JudgeDeny1.gif", "resources/pics/JudgeDeny2.gif",
+                    "resources/pics/JudgeDeny3.gif", "resources/pics/JudgeDeny3.gif",
+                    "resources/pics/JudgeDeny4.gif","resources/pics/JudgeDeny4.gif",
+                    "resources/pics/JudgeDeny3.gif","resources/pics/JudgeDeny3.gif",
+                    "resources/pics/JudgeDeny5.gif","resources/pics/JudgeDeny5.gif",
+                    "resources/pics/JudgeDeny3.gif", "resources/pics/JudgeDeny3.gif",
+                    "resources/pics/JudgeDeny4.gif", "resources/pics/JudgeDeny4.gif",
+                    "resources/pics/JudgeDeny3.gif", "resources/pics/JudgeDeny3.gif",
+                    "resources/pics/JudgeDeny2.gif","resources/pics/JudgeDeny1.gif"
+                    ]
+        elif role == "JudgeSerious":
+            strs = ["resources/pics/JudgeSerious1.gif", "resources/pics/JudgeSerious2.gif",
+                    "resources/pics/JudgeSerious3.gif", "resources/pics/JudgeSerious4.gif",
+                    "resources/pics/JudgeSerious5.gif", "resources/pics/JudgeSerious6.gif",
+                    ]
+
+        elif role == "EdgeworthNormal":
+            strs = ["resources/pics/EdgeworthNormal1.gif", "resources/pics/EdgeworthNormal2.gif",
+                    "resources/pics/EdgeworthNormal3.gif"
+                    ]
 
         for i in range(len(strs)):
             self.roles.append(pygame.image.load(strs[i]).convert_alpha())

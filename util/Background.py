@@ -5,6 +5,8 @@ class Background:
         self.fps = 30
         self.fClock = pygame.time.Clock()
         self.screen = screen
+        self.width = width
+        self.height = height
         self.background_upper = pygame.image.load(path1).convert()
         self.background_lower = pygame.image.load(path2)
         self.background_upper = pygame.transform.scale(self.background_upper, (width, int(0.5 * height)))
@@ -21,6 +23,10 @@ class Background:
             self.screen.blit(self.background_lower, self.background_lower_rect)
         else:
             self.screen.blit(self.background_upper, self.background_upper_rect)
+
+    def change_background(self, str):
+        self.background_upper = pygame.image.load(str).convert()
+        self.background_upper = pygame.transform.scale(self.background_upper, (self.width, int(0.5 * self.height)))
 
     def fade_in(self):
         for i in range(0, 256, 6):

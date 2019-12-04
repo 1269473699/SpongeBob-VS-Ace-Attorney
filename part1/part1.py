@@ -96,8 +96,9 @@ class Part1_printer:
         self.i = 1
         evidence = 0
         while True:
-
-            self.dialog.print_text('resources/texts/Part1.txt', self.i, self.sound)
+            if self.i == 999:
+                return None
+            self.i = self.dialog.print_text('resources/texts/Part1.txt', self.i, self.sound) #返回值为内部作用后返回的行号
             flag = True
             flag2 = False
             while True and flag:

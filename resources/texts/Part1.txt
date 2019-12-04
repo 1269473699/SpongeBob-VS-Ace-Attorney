@@ -34,14 +34,17 @@ $white$呜呜呜呜呜！$4$$
 成步堂$#6495ED$（她还在瀑布下做所谓的修行.）$4$MayaSurprisedIntro$
 成步堂$#6495ED$（大概还不知道现在这个黄黄的东西已经是我们的...）$4$MayaSurprisedIntro$
 成步堂$red$（当事人）$4$$
+play$resources/sounds/TextInspired.ogg$
 成步堂$white$那个...海绵宝宝先生？我可以再确认一下案情吗？$4$$
 海绵宝宝$white$呜呜呜呜呜呜呜！$2$SpongeBobCry$$
 真宵$white$海绵宝宝先生？难道...$3$MayaSurprised$$
 真宵$white$这个海绵是我们这次的被告？！$3$MayaShocked$$
+play$resources/sounds/TextInspired.ogg$
 成步堂$white$总之...大概就是这样。$4$$
 成步堂$white$不知道是哪个编剧的恶作剧，$4$$
 成步堂$white$让他从几千米的海底被抓出来起诉。$4$$
 成步堂$red$罪名是故意杀人。$4$$
+play$resources/sounds/TextInspired.ogg$
 真宵$white$.........$4$MayaSurprised$$
 真宵$white$.........$4$MayaSurprised$$
 真宵$white$我想我可以理解...$4$MayaSurprised$$

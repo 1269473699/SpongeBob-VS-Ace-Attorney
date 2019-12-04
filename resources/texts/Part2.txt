@@ -1,0 +1,5 @@
+$green$XXXX年XX月XX日 被告人第三法庭$6$$$$
+$action$hammer$40$
+裁判长$white$关于被告人海绵宝宝毒杀案的审理，$3$JudgeNormal$resources/pics/JudgeChair.png$resources/music/OpenSession.mp3$$
+裁判长$white$现在开始.$5$JudgeNod$resources/pics/JudgeChair.png$$$resources/pics/AccusationTable.png$
+裁判长$white$检控方做好准备了吗？$4$JudgeSerious$resources/pics/JudgeChair.png$$

@@ -72,6 +72,8 @@ class DialogBox:
         global punctuation
         punctuation = False
         text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
+        if text == "":
+            return 999
         texts = text.split("$") #以$为分隔符将一行分为个字符串
         color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
         dialogue = texts[2]
@@ -136,6 +138,13 @@ class DialogBox:
                          size=self.font_size)
 
         pygame.display.update()
+        next_text = linecache.getline(path, line_no+1)
+        if next_text != "":
+            next_texts = next_text.split("$")
+            if next_texts[0] == 'play':
+                tmp_sound = pygame.mixer.Sound(next_texts[1])
+                line_no = line_no+1
+                tmp_sound.play()
 
         for button in self.buttons:
             if button.i == 2:
@@ -144,5 +153,6 @@ class DialogBox:
                         if event.type == pygame.MOUSEBUTTONUP:
                             button.respond_to_up(event)
                             button.display_button()
+                            return line_no
 
-                            return
+        return line_no
