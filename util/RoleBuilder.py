@@ -53,6 +53,11 @@ class RoleBuilder:
                     "resources/pics/JudgeDeny3.gif", "resources/pics/JudgeDeny3.gif",
                     "resources/pics/JudgeDeny2.gif","resources/pics/JudgeDeny1.gif"
                     ]
+        elif role == "JudgeSurprised":
+            strs = ["resources/pics/JudgeSurprised1.gif", "resources/pics/JudgeSurprised2.gif",
+                    "resources/pics/JudgeSurprised3.gif", "resources/pics/JudgeSurprised4.gif",
+                    "resources/pics/JudgeSurprised5.gif","resources/pics/JudgeSurprised6.gif"]
+
         elif role == "JudgeSerious":
             strs = ["resources/pics/JudgeSerious1.gif", "resources/pics/JudgeSerious2.gif",
                     "resources/pics/JudgeSerious3.gif", "resources/pics/JudgeSerious4.gif",
@@ -63,6 +68,61 @@ class RoleBuilder:
             strs = ["resources/pics/EdgeworthNormal1.gif", "resources/pics/EdgeworthNormal2.gif",
                     "resources/pics/EdgeworthNormal3.gif"
                     ]
+        elif role == "EdgeworthCross":
+            strs = ["resources/pics/EdgeworthCross1.gif", "resources/pics/EdgeworthCross2.gif",
+                    "resources/pics/EdgeworthCross3.gif", "resources/pics/EdgeworthCross4.gif",
+                    "resources/pics/EdgeworthCross5.gif", "resources/pics/EdgeworthCross6.gif",
+                    "resources/pics/EdgeworthCross7.gif", "resources/pics/EdgeworthCross8.gif",
+                    ]
+
+        elif role == "EdgeworthSlam":
+            strs = ["resources/pics/EdgeworthSlam1.gif", "resources/pics/EdgeworthSlam2.gif",
+                    "resources/pics/EdgeworthSlam3.gif"
+                    ]
+
+        elif role == "EdgeworthAngry":
+            strs = ["resources/pics/EdgeworthAngry1.gif", "resources/pics/EdgeworthAngry2.gif",
+                    "resources/pics/EdgeworthAngry3.gif"
+                    ]
+
+        elif role == "EdgeworthPoint":
+            strs = ["resources/pics/EdgeworthPoint1.gif", "resources/pics/EdgeworthPoint2.gif",
+                    "resources/pics/EdgeworthPoint3.gif", "resources/pics/EdgeworthPoint4.gif",
+                    "resources/pics/EdgeworthPoint5.gif"
+                    ]
+
+        elif role == "PhoenixNormal":
+            strs = ["resources/pics/PhoenixNormal1.gif", "resources/pics/PhoenixNormal2.gif",
+                "resources/pics/PhoenixNormal3.gif", "resources/pics/PhoenixNormal4.gif",
+                "resources/pics/PhoenixNormal5.gif"
+                ]
+
+        elif role == "PhoenixThink":
+            strs = ["resources/pics/PhoenixThink1.gif", "resources/pics/PhoenixThink2.gif",
+                "resources/pics/PhoenixThink3.gif", "resources/pics/PhoenixThink4.gif",
+                "resources/pics/PhoenixThink5.gif", "resources/pics/PhoenixThink6.gif",
+                "resources/pics/PhoenixThink7.gif"
+                ]
+
+        elif role == "PhoenixSweatQuiet":
+            strs = ["resources/pics/PhoenixSweatQuiet1.gif", "resources/pics/PhoenixSweatQuiet2.gif",
+                "resources/pics/PhoenixSweatQuiet3.gif", "resources/pics/PhoenixSweatQuiet4.gif",
+                "resources/pics/PhoenixSweatQuiet5.gif", "resources/pics/PhoenixSweatQuiet6.gif",
+                "resources/pics/PhoenixSweatQuiet7.gif"
+                ]
+
+        elif role == "MayaDespise":
+            strs = ["resources/pics/MayaDespise1.gif", "resources/pics/MayaDespise2.gif"]
+
+        elif role == "MayaSideNormal":
+            strs = ["resources/pics/MayaSideNormal1.gif", "resources/pics/MayaSideNormal2.gif"
+                    , "resources/pics/MayaSideNormal3.gif"]
+
+        elif role == "MayaSideAngry":
+            strs = ["resources/pics/MayaSideAngry1.gif", "resources/pics/MayaSideAngry2.gif"]
+
+        elif role == "MayaSideAngryQuiet":
+            strs = ["resources/pics/MayaSideAngry1.gif"]
 
         for i in range(len(strs)):
             self.roles.append(pygame.image.load(strs[i]).convert_alpha())

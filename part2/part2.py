@@ -89,6 +89,7 @@ class Part2Printer:
 
     def display_part2(self):
         evidence = 0
+        self.i = 1
         while True:
             if self.i == 999:
                 return None

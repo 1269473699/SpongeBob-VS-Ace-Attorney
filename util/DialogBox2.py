@@ -58,6 +58,9 @@ class DialogBox:
             self.screen.blit(self.roles[(self.i)//self.speed], self.role_rects[(self.i)//self.speed])
             if puncutaion == False:
                 self.i = (self.i+1) % (len(self.roles)*self.speed)
+        if self.table != "":
+            # self.screen.blit(self.table_pic, (0, int(self.height*0.5 - 0.182812*0.5*self.height)))
+            self.screen.blit(self.table_pic, self.table_point)
         if self.condition == 1:
             self.evidenceList[self.evidence].display_evidence()
         for button in self.buttons:
@@ -74,7 +77,7 @@ class DialogBox:
     def print_text(self, path, line_no, sound):
 
 
-        punctuations = ('。', '：', '、', '！', '，', '（', '）', '.')
+        punctuations = ('。', '：', '、', '！', '，', '（', '）', '.','(',')')
         global punctuation
         punctuation = False
         text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
@@ -94,6 +97,7 @@ class DialogBox:
 
         background = texts[5]
         music = texts[6]
+        self.table = texts[7]
         if background != "":
             self.back_g.change_background(background)
         if music != "":
@@ -103,6 +107,15 @@ class DialogBox:
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load(music)
                 pygame.mixer.music.play(-1)
+        if self.table != "":
+            if self.table =="AccusationTable":
+                self.table_pic = pygame.image.load("resources/pics/AccusationTable.png").convert_alpha()
+                self.table_pic = pygame.transform.scale(self.table_pic, (int(0.825*self.width), int(0.182812*0.5*self.height)))
+                self.table_point = (self.width - int(0.825*self.width), int(self.height * 0.5 - 0.182812 * 0.5 * self.height))
+            elif self.table =="DefendTable":
+                self.table_pic = pygame.image.load("resources/pics/DefendTable.png").convert_alpha()
+                self.table_pic = pygame.transform.scale(self.table_pic, (int(0.825*self.width), int(0.182812*0.5*self.height)))
+                self.table_point = (0, int(self.height * 0.5 - 0.182812 * 0.5 * self.height))
         color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
         dialogue = texts[2]
         self.speed = eval(texts[3])
