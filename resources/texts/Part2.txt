@@ -34,3 +34,4 @@ play$resources/sounds/TextSurprised.wav$
 真宵$red$点击下面那个棕色的文件袋就可以打开！$3$MayaSideAngry$resources/pics/CourtAssistant.png$$$$$
 成步堂$white$不...不用你提醒，我可是资深律师了...$3$MayaSideAngryQuiet$resources/pics/CourtAssistant.png$$DefendTable$$$
 成步堂$#6495ED$（死亡估计时间是...）$3$PhoenixThink$resources/pics/Defend.png$$DefendTable$$$
+裁判长$green$嗯...正确的答案.$4$JudgeNod$resources/pics/JudgeChair.png$$$

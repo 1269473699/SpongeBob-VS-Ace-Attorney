@@ -8,7 +8,9 @@ class ActionBuilder:
         self.role_rects = []
         strs = []
         if action == "hammer":
-            strs = ["resources/pics/Hammer.png", "resources/pics/Hammer.png","resources/pics/Hammer.png","resources/pics/Hammer1.png", "resources/pics/Hammer2.png"]
+            strs = ["resources/pics/Hammer.png",
+                    "resources/pics/Hammer.png","resources/pics/Hammer.png",
+                    "resources/pics/Hammer1.png", "resources/pics/Hammer2.png"]
             self.action_sound = pygame.mixer.Sound("resources/sounds/Hammer.ogg")
 
         for i in range(len(strs)):

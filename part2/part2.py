@@ -3,6 +3,7 @@ from util.DialogBox2 import DialogBox
 from util.Background import Background
 from util.Button import Button, ChangeableButton
 from util.Evidence import Evidence
+from util.Question import QuestionBuilder
 import sys
 
 
@@ -14,6 +15,7 @@ class Part2Printer:
         self.screen = screen
         self.fps = 30
         self.fClock = pygame.time.Clock()
+        self.question = QuestionBuilder(height, width, screen)
         self.back_g = Background(width, height,
                                  'resources/pics/Black.png',
                                  'resources/pics/Background2.jpg', self.screen)
@@ -143,3 +145,5 @@ class Part2Printer:
                 for button in self.buttons:
                         button.display_button()
                 pygame.display.update()
+            if self.i == 37:
+                self.i = self.question.display_question(0)
