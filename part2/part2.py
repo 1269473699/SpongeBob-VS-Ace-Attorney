@@ -147,3 +147,9 @@ class Part2Printer:
                 pygame.display.update()
             if self.i == 37:
                 self.i = self.question.display_question(0)
+            elif self.i == 94:
+                self.back_g.change_background("resources/pics/Witness.png")
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("resources/music/Witness.mp3")
+                pygame.mixer.music.play(-1)
+                self.back_g.fade_in()

@@ -116,6 +116,12 @@ class DialogBox:
                 self.table_pic = pygame.image.load("resources/pics/DefendTable.png").convert_alpha()
                 self.table_pic = pygame.transform.scale(self.table_pic, (int(0.825*self.width), int(0.182812*0.5*self.height)))
                 self.table_point = (0, int(self.height * 0.5 - 0.182812 * 0.5 * self.height))
+
+            elif self.table =="WitnessTable":
+                self.table_pic = pygame.image.load("resources/pics/WitnessTable.png").convert_alpha()
+                self.table_pic = pygame.transform.scale(self.table_pic, (int(0.825*self.width), int(0.182812*0.5*self.height)))
+                self.table_point = (0, int(self.height * 0.5 - 0.182812 * 0.5 * self.height))
+
         color = texts[1] #0为说话者，1为颜色，2为说话内容，3为速度，4为人物动作
         dialogue = texts[2]
         self.speed = eval(texts[3])
@@ -186,6 +192,10 @@ class DialogBox:
                 tmp_sound = pygame.mixer.Sound(next_texts[1])
                 line_no = line_no+1
                 tmp_sound.play()
+
+            elif next_texts[0] == 'goto':
+                no = eval(next_texts[1])
+                return no - 1
 
         for button in self.buttons:
             if button.i == 2:

@@ -13,7 +13,7 @@ class QuestionBuilder:
         self.rect = self.surfaces[0].get_rect()
         self.rect.top = self.height
         self.screen = screen
-        self.destination = [[31, 37, 31]] #二维列表，每个问题的三个选项的返回值（要跳转到的行数）
+        self.destination = [[38, 66, 52]] #二维列表，每个问题的三个选项的返回值（要跳转到的行数）
 
     def display_question(self, i):
         while True:
