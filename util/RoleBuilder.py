@@ -86,6 +86,14 @@ class RoleBuilder:
                     "resources/pics/EdgeworthAngry3.gif"
                     ]
 
+        elif role == "EdgeworthProud":
+            strs = ["resources/pics/EdgeworthProud1.gif", "resources/pics/EdgeworthProud2.gif",
+                    "resources/pics/EdgeworthProud5.gif","resources/pics/EdgeworthProud4.gif",
+                    "resources/pics/EdgeworthProud5.gif","resources/pics/EdgeworthProud3.gif",
+                    "resources/pics/EdgeworthProud5.gif","resources/pics/EdgeworthProud4.gif",
+                    "resources/pics/EdgeworthProud3.gif"
+                    ]
+
         elif role == "EdgeworthPoint":
             strs = ["resources/pics/EdgeworthPoint1.gif", "resources/pics/EdgeworthPoint2.gif",
                     "resources/pics/EdgeworthPoint3.gif", "resources/pics/EdgeworthPoint4.gif",
@@ -97,6 +105,12 @@ class RoleBuilder:
                     "resources/pics/EdgeworthBow2.gif","resources/pics/EdgeworthBow2.gif",
                     "resources/pics/EdgeworthBow3.gif", "resources/pics/EdgeworthBow3.gif",
                     "resources/pics/EdgeworthBow3.gif","resources/pics/EdgeworthBow3.gif"
+                    ]
+
+        elif role == "EdgeworthShocked":
+            strs = ["resources/pics/EdgeworthUpset1.gif", "resources/pics/EdgeworthShocked1.gif",
+                    "resources/pics/EdgeworthShocked2.gif","resources/pics/EdgeworthUpset1.gif",
+                    "resources/pics/EdgeworthUpset2.gif", "resources/pics/EdgeworthUpset3.gif",
                     ]
 
         elif role == "PhoenixNormal":

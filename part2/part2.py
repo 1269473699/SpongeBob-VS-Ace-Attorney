@@ -91,7 +91,7 @@ class Part2Printer:
 
     def display_part2(self):
         evidence = 0
-        self.i = 1
+        self.i = 114
         while True:
             if self.i == 999:
                 return None
@@ -152,4 +152,8 @@ class Part2Printer:
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load("resources/music/Witness.mp3")
                 pygame.mixer.music.play(-1)
+                self.back_g.fade_in()
+            elif self.i == 114:
+                self.back_g.change_background("resources/pics/Black.png")
+                pygame.mixer.music.stop()
                 self.back_g.fade_in()

@@ -25,7 +25,7 @@ if __name__ == '__main__':
     temp = int(0.125*height)
     temp2 = int(0.375*height)
     #dl = DialogBox(screen, width, temp, temp2, 0)
-    #action = 3
+    action = 3
     if action == 0:
         lp.display_logo()
         action = action + 1

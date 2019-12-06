@@ -68,7 +68,7 @@ class DialogBox:
 
 
     def print_text(self, path, line_no, sound):
-        punctuations = ('。', '：', '、', '！', '，', '（', '）', '.')
+        punctuations = ('。', '：', '、', '！', '，', '（', '）', '.', '~')
         global punctuation
         punctuation = False
         text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行

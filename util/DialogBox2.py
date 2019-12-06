@@ -85,14 +85,17 @@ class DialogBox:
             return 999
 
         texts = text.split("$") #以$为分隔符将一行分为个字符串
-        if texts[1] == 'action':
+        if texts[1] == 'action' or texts[1] == 'action2':
             ab = ActionBuilder(texts[2], self.height)
             action_pics, action_rects, action_sound = ab.get_actions()
             action_speed = eval(texts[3])
+            if texts[1] == 'action2':
+                action_sound.play()
             for i in range(action_speed*len(action_pics)):
                 self.screen.blit(action_pics[i//action_speed], action_rects[i//action_speed])
                 pygame.display.update()
-            action_sound.play()
+            if texts[1] == 'action':
+                action_sound.play()
             return line_no
 
         background = texts[5]
