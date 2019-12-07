@@ -5,6 +5,7 @@ from util.Button import Button, ChangeableButton
 from util.Evidence import Evidence
 from util.Question import QuestionBuilder
 from util.ActionBuilder import ActionBuilder
+from util.HealthBuilder import HealthBuilder
 import sys
 
 
@@ -148,6 +149,8 @@ class Part2Printer:
                                     self.fClock.tick(30)
                                 self.i = self.presentLine.get(self.i)
                                 flag2 = True
+                            else:
+                                self.dialog.hpbd.damaged()
 
                         elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
@@ -169,6 +172,7 @@ class Part2Printer:
                     self.evidenceList[evidence].display_evidence()
                 for button in self.buttons:
                     button.display_button()
+                self.dialog.hpbd.display_health()
                 pygame.display.update()
             if self.i == 37:
                 self.i = self.question.display_question(0)

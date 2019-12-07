@@ -5,6 +5,7 @@ import pygame.freetype
 from util.RoleBuilder import RoleBuilder
 from util.ActionBuilder import ActionBuilder
 from util.Background import Background
+from util.HealthBuilder import HealthBuilder
 from util.Evidence import Evidence
 from time import sleep
 
@@ -51,7 +52,7 @@ class DialogBox:
         '''
         self.i = 0
         self.condition = 0
-
+        self.hpbd = HealthBuilder(height, width, screen)
     def clean_dialog(self, puncutaion): #输出对话内容时，每一帧都要调用一次该函数，作用是绘制文本之外的部分
         self.back_g.display_background(0)
         if len(self.roles) >= 1:
@@ -176,6 +177,7 @@ class DialogBox:
                             button.display_button()
                             None
             self.condition = self.buttons[3].condition
+            self.hpbd.display_health()
             pygame.display.update()
             sound.stop()
 
