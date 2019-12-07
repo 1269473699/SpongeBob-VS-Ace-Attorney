@@ -72,6 +72,7 @@ class DialogBox:
             self.f.render_to(self.screen, self.sayer_pos, self.sayer_text, fgcolor=(255, 255, 255),
                              size=self.sayer_font_size)
 
+        self.buttons[0].enable(1)
 
 
     def print_text(self, path, line_no, sound):
@@ -83,10 +84,10 @@ class DialogBox:
         text = linecache.getline(path, line_no) #传入文本路径，行数和音效作为参数，每次读取一行
         if text == "":
             return 999
-        if line_no == 128:
-            self.buttons[0].enable(1)
-        elif line_no == 135:
-            self.buttons[0].enable(0)
+        #if line_no == 128:
+        #    self.buttons[0].enable(1)
+        #elif line_no == 134:
+        #    self.buttons[0].enable(0)
         texts = text.split("$") #以$为分隔符将一行分为个字符串
         if texts[1] == 'action' or texts[1] == 'action2':
             ab = ActionBuilder(texts[2], self.height)

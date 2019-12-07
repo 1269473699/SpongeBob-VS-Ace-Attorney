@@ -83,16 +83,20 @@ class Part2Printer:
         self.evidenceList.append(Evidence('resources/pics/Evidence1.png', 'pictureOfCanteen', height, width, screen))
         self.evidenceList.append(Evidence('resources/pics/Evidence2.png', 'autopsyReport', height, width, screen))
         self.evidenceList.append(Evidence('resources/pics/Evidence3.png', 'pictureOfKitchen', height, width, screen))
+        self.evidenceList.append(Evidence('resources/pics/Evidence4.png', 'eggBurger', height, width, screen))
 
         self.dialog_p1 = DialogBox(screen, width, height, self.buttons, self.evidenceList)
         self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList)
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
-        self.link = {128: 136, 129: 136, 130: 136}
+        self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193}
+        self.present = {132:'eggBurger'}
+        self.presentLine = {132:203}
         self.deterAction = ActionBuilder("PhoenixDeter", height)
+        self.objectionAction = ActionBuilder("PhoenixObjection", height)
     def display_part2(self):
         evidence = 0
-        self.i = 114
+        self.i = 125
         while True:
             if self.i == 999:
                 return None
@@ -100,6 +104,9 @@ class Part2Printer:
             flag = True
             flag2 = False
             while True and flag:
+                if pygame.event.get_blocked(pygame.MOUSEBUTTONUP):
+                    pygame.event.set_allowed(pygame.MOUSEBUTTONUP)
+                    pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         sys.exit()
@@ -107,10 +114,12 @@ class Part2Printer:
                         # for button in self.buttons:
                         if self.buttons[0].respond_to_clicking(event):  # 威慑
                             if self.i in self.link:
+                                pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+                                pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
                                 self.display_deter()
                                 self.i = self.link.get(self.i)
                                 flag2 = True
-                                print(self.i)
+                                #print(self.i)
                         elif self.buttons[1].respond_to_clicking(event):  # 播放
                             if self.condition == 0:
                                 self.i = self.i + 1
@@ -128,7 +137,18 @@ class Part2Printer:
                             self.buttons[5].enable(1)
                             self.buttons[2].enable(0)
                         elif self.buttons[4].respond_to_clicking(event):  # 指证
-                            None
+                            if self.present.get(self.i) == self.evidenceList[evidence].title:
+                                pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+                                pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
+                                roles, role_rects, action_sound = self.objectionAction.get_actions()
+                                action_sound.play()
+                                for i in range(15):
+                                    self.screen.blit(roles[0], role_rects[0])
+                                    pygame.display.update()
+                                    self.fClock.tick(30)
+                                self.i = self.presentLine.get(self.i)
+                                flag2 = True
+
                         elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
                             self.buttons[4].enable(1)
@@ -170,3 +190,5 @@ class Part2Printer:
             self.screen.blit(roles[0], role_rects[0])
             pygame.display.update()
             self.fClock.tick(30)
+        #pygame.event.get_blocked(pygame.MOUSEBUTTONUP)
+        #mm=2

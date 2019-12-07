@@ -133,6 +133,13 @@ class RoleBuilder:
                     "resources/pics/PhoenixSweatQuiet7.gif"
                     ]
 
+        elif role == "PhoenixSweat":
+            strs = ["resources/pics/PhoenixSweat1.gif", "resources/pics/PhoenixSweat2.gif",
+                    "resources/pics/PhoenixSweat3.gif", "resources/pics/PhoenixSweat4.gif",
+                    "resources/pics/PhoenixSweat5.gif", "resources/pics/PhoenixSweat6.gif",
+                    "resources/pics/PhoenixSweat7.gif"
+                    ]
+
         elif role == "PhoenixElated":
             strs = ["resources/pics/PhoenixElated1.gif", "resources/pics/PhoenixElated2.gif",
                 "resources/pics/PhoenixElated3.gif", "resources/pics/PhoenixElated4.gif",
@@ -168,6 +175,12 @@ class RoleBuilder:
                     "resources/pics/PhoenixShocked3.gif", "resources/pics/PhoenixShocked4.gif",
                     "resources/pics/PhoenixShocked5.gif", "resources/pics/PhoenixShocked6.gif",
                     "resources/pics/PhoenixShocked7.gif"
+                    ]
+
+        elif role == "PhoenixAngry":
+            strs = ["resources/pics/PhoenixAngry1.gif", "resources/pics/PhoenixAngry2.gif",
+                    "resources/pics/PhoenixAngry3.gif", "resources/pics/PhoenixAngry4.gif",
+                    "resources/pics/PhoenixAngry5.gif"
                     ]
 
         elif role == "MayaDespise":
