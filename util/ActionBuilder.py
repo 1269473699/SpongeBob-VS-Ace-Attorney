@@ -57,7 +57,19 @@ class ActionBuilder:
                 self.role_rects[i].top = 0
                 self.role_rects[i].left = 0
 
+        elif action == "PhoenixDeter":
+            strs = ["resources/pics/Deter.png"]
+            self.action_sound = pygame.mixer.Sound("resources/sounds/PhoenixObjection.ogg")
+            for i in range(len(strs)):
+                self.roles.append(pygame.image.load(strs[i]).convert_alpha())
+                self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.25 * 1.5), int(height * 0.25)))
+                self.role_rects.append(self.roles[i].get_rect())
+                self.role_rects[i].top = 0
+                self.role_rects[i].left = 0
+
     def get_actions(self):
         return self.roles, self.role_rects, self.action_sound
+
+
 
 

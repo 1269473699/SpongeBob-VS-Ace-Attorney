@@ -4,6 +4,7 @@ from util.Background import Background
 from util.Button import Button, ChangeableButton
 from util.Evidence import Evidence
 from util.Question import QuestionBuilder
+from util.ActionBuilder import ActionBuilder
 import sys
 
 
@@ -19,7 +20,6 @@ class Part2Printer:
         self.back_g = Background(width, height,
                                  'resources/pics/Black.png',
                                  'resources/pics/Background2.jpg', self.screen)
-
 
         width1 = int(width * 0.7)
         height1 = int(width1 / 1.2)
@@ -64,7 +64,7 @@ class Part2Printer:
         playButton.enable(1)
         backButton = ChangeableButton(int(0.15 * width), int(0.125 * width), screen, backSurfaces,
                                       int(0.985 * height - 0.125 * width), int(0.02 * width), sound2, sound1)
-        #backButton.enable(1)
+        # backButton.enable(1)
         returnButton = ChangeableButton(int(0.15 * width), int(0.125 * width), screen, returnSurfaces,
                                         int(0.985 * height - 0.125 * width), int(0.6 * width), sound2, sound1)
         exhibitButton = ChangeableButton(int(0.15 * width), int(0.125 * width), screen, evidenceSurfaces,
@@ -88,14 +88,15 @@ class Part2Printer:
         self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList)
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
-
+        self.link = {128: 136, 129: 136, 130: 136}
+        self.deterAction = ActionBuilder("PhoenixDeter", height)
     def display_part2(self):
         evidence = 0
         self.i = 114
         while True:
             if self.i == 999:
                 return None
-            self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound) #返回值为内部作用后返回的行号
+            self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound)  # 返回值为内部作用后返回的行号
             flag = True
             flag2 = False
             while True and flag:
@@ -103,10 +104,14 @@ class Part2Printer:
                     if event.type == pygame.QUIT:
                         sys.exit()
                     elif event.type == pygame.MOUSEBUTTONDOWN:
-                        #for button in self.buttons:
-                        if self.buttons[0].respond_to_clicking(event): #威慑
-                            None
-                        elif self.buttons[1].respond_to_clicking(event): #播放
+                        # for button in self.buttons:
+                        if self.buttons[0].respond_to_clicking(event):  # 威慑
+                            if self.i in self.link:
+                                self.display_deter()
+                                self.i = self.link.get(self.i)
+                                flag2 = True
+                                print(self.i)
+                        elif self.buttons[1].respond_to_clicking(event):  # 播放
                             if self.condition == 0:
                                 self.i = self.i + 1
                                 flag2 = True
@@ -115,16 +120,16 @@ class Part2Printer:
                             if self.i == 2:
                                 self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
 
-                        elif self.buttons[2].respond_to_clicking(event): #后退
+                        elif self.buttons[2].respond_to_clicking(event):  # 后退
                             evidence = (evidence - 1) % len(self.evidenceList)
-                        elif self.buttons[3].respond_to_clicking(event): #返回
+                        elif self.buttons[3].respond_to_clicking(event):  # 返回
                             self.buttons[3].enable(0)
                             self.buttons[4].enable(0)
                             self.buttons[5].enable(1)
                             self.buttons[2].enable(0)
-                        elif self.buttons[4].respond_to_clicking(event): #指证
+                        elif self.buttons[4].respond_to_clicking(event):  # 指证
                             None
-                        elif self.buttons[5].respond_to_clicking(event): #证物袋
+                        elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
                             self.buttons[4].enable(1)
                             self.buttons[5].enable(0)
@@ -139,11 +144,11 @@ class Part2Printer:
                                 flag = False
                 self.condition = self.buttons[3].condition
                 self.back_g.display_background(1)
-                #pygame.display.update()
+                # pygame.display.update()
                 if self.condition == 1:
                     self.evidenceList[evidence].display_evidence()
                 for button in self.buttons:
-                        button.display_button()
+                    button.display_button()
                 pygame.display.update()
             if self.i == 37:
                 self.i = self.question.display_question(0)
@@ -157,3 +162,11 @@ class Part2Printer:
                 self.back_g.change_background("resources/pics/Black.png")
                 pygame.mixer.music.stop()
                 self.back_g.fade_in()
+
+    def display_deter(self):
+        roles, role_rects, action_sound = self.deterAction.get_actions()
+        action_sound.play()
+        for i in range(30):
+            self.screen.blit(roles[0], role_rects[0])
+            pygame.display.update()
+            self.fClock.tick(30)

@@ -133,3 +133,5 @@ $red$~~~~~~~~海绵宝宝的案发见闻~~~~~~~$3$$$resources/music/Cross-exam.m
 海绵宝宝$red$这个顾客吃了我做的汉堡，立刻就晕倒了。$2$SpongeBobSmile$resources/pics/Cross-exam.png$$WitnessTable$$$
 海绵宝宝$red$一定是我的汉堡不对，我对不起蟹堡王厨师的身份！$2$SpongeBobCry$resources/pics/Cross-exam.png$$WitnessTable$$$
 goto$128$
+海绵宝宝$red$你威慑你马呢$2$SpongeBobSmile$resources/pics/Cross-exam.png$$WitnessTable$$$
+goto$128$
