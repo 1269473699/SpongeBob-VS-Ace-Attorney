@@ -94,8 +94,8 @@ class Part2Printer:
         self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList)
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
-        self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193, 303:315, 304:325, 305:339,
-                     306: 359, 307: 367, 308: 375}
+        self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193, 303: 315, 304: 325, 305: 339,
+                     306: 359, 307: 367, 308: 375, 432: 440, 433: 440, 434: 451, 435: 460, 436: 470}
         self.present = {132:'eggBurger', 305:'poison'}
         self.presentLine = {132:210, 305:388}
         self.deterAction = ActionBuilder("PhoenixDeter", height)
