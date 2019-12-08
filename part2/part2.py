@@ -12,6 +12,10 @@ import sys
 class Part2Printer:
 
     def __init__(self, screen, width, height):
+        self.add = False
+        self.height = height
+        self.width = width
+        self.wrong = 203
         self.i = 1
         self.condition = 0
         self.screen = screen
@@ -90,15 +94,20 @@ class Part2Printer:
         self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList)
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
-        self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193}
-        self.present = {132:'eggBurger'}
-        self.presentLine = {132:203}
+        self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193, 303:315, 304:325, 305:339,
+                     306: 359, 307: 367, 308: 375}
+        self.present = {132:'eggBurger', 305:'poison'}
+        self.presentLine = {132:210, 305:388}
         self.deterAction = ActionBuilder("PhoenixDeter", height)
         self.objectionAction = ActionBuilder("PhoenixObjection", height)
     def display_part2(self):
         evidence = 0
-        self.i = 125
+        self.i = 302
         while True:
+            if self.i == self.wrong+5:
+                self.dialog.hpbd.damaged()
+                self.i = self.last_text
+                continue
             if self.i == 999:
                 return None
             self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound)  # 返回值为内部作用后返回的行号
@@ -138,7 +147,6 @@ class Part2Printer:
                             self.buttons[5].enable(1)
                             self.buttons[2].enable(0)
                         elif self.buttons[4].respond_to_clicking(event):  # 指证
-                            if self.present.get(self.i) == self.evidenceList[evidence].title:
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
                                 roles, role_rects, action_sound = self.objectionAction.get_actions()
@@ -147,10 +155,14 @@ class Part2Printer:
                                     self.screen.blit(roles[0], role_rects[0])
                                     pygame.display.update()
                                     self.fClock.tick(30)
-                                self.i = self.presentLine.get(self.i)
-                                flag2 = True
-                            else:
-                                self.dialog.hpbd.damaged()
+                                if self.present.get(self.i) == self.evidenceList[evidence].title:
+                                    pygame.mixer.music.stop()
+                                    self.i = self.presentLine.get(self.i)
+                                    flag2 = True
+                                else:
+                                    self.last_text = self.i
+                                    self.i = self.wrong
+                                    flag2 = True
 
                         elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
@@ -176,16 +188,27 @@ class Part2Printer:
                 pygame.display.update()
             if self.i == 37:
                 self.i = self.question.display_question(0)
-            elif self.i == 94:
+            elif self.i == 94 or self.i == 267:
                 self.back_g.change_background("resources/pics/Witness.png")
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load("resources/music/Witness.mp3")
                 pygame.mixer.music.play(-1)
                 self.back_g.fade_in()
-            elif self.i == 114:
+            elif self.i == 114 or self.i == 286:
                 self.back_g.change_background("resources/pics/Black.png")
                 pygame.mixer.music.stop()
                 self.back_g.fade_in()
+
+            elif self.i == 298:
+                auto = Evidence('resources/pics/Autograph.png', 'autograph', self.height, self.width, self.screen)
+                self.evidenceList.append(auto)
+
+            elif self.i == 354:
+                if self.add:
+                    self.i = 305
+                poison = Evidence('resources/pics/Poison.png', 'poison', self.height, self.width, self.screen)
+                self.evidenceList.append(poison)
+                self.add = True
 
     def display_deter(self):
         roles, role_rects, action_sound = self.deterAction.get_actions()

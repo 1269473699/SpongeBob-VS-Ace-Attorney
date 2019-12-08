@@ -113,6 +113,13 @@ class RoleBuilder:
                     "resources/pics/EdgeworthUpset2.gif", "resources/pics/EdgeworthUpset3.gif",
                     ]
 
+        elif role == "EdgeworthWag":
+            strs = ["resources/pics/EdgeworthWag1.gif", "resources/pics/EdgeworthWag2.gif",
+                    "resources/pics/EdgeworthWag3.gif","resources/pics/EdgeworthWag4.gif",
+                    "resources/pics/EdgeworthWag5.gif", "resources/pics/EdgeworthWag6.gif",
+                    "resources/pics/EdgeworthWag7.gif", "resources/pics/EdgeworthWag8.gif",
+                    ]
+
         elif role == "PhoenixNormal":
             strs = ["resources/pics/PhoenixNormal1.gif", "resources/pics/PhoenixNormal2.gif",
                 "resources/pics/PhoenixNormal3.gif", "resources/pics/PhoenixNormal4.gif",
@@ -131,6 +138,10 @@ class RoleBuilder:
                     "resources/pics/PhoenixSweatQuiet3.gif", "resources/pics/PhoenixSweatQuiet4.gif",
                     "resources/pics/PhoenixSweatQuiet5.gif", "resources/pics/PhoenixSweatQuiet6.gif",
                     "resources/pics/PhoenixSweatQuiet7.gif"
+                    ]
+
+        elif role == "PhoenixAngryQuiet":
+            strs = ["resources/pics/PhoenixSlam5.gif"
                     ]
 
         elif role == "PhoenixSweat":
@@ -183,6 +194,12 @@ class RoleBuilder:
                     "resources/pics/PhoenixAngry5.gif"
                     ]
 
+        elif role == "PhoenixSlam":
+            strs = ["resources/pics/PhoenixSlam1.gif", "resources/pics/PhoenixSlam2.gif",
+                    "resources/pics/PhoenixSlam3.gif", "resources/pics/PhoenixSlam4.gif",
+                    "resources/pics/PhoenixSlam5.gif"
+                    ]
+
         elif role == "MayaDespise":
             strs = ["resources/pics/MayaDespise1.gif", "resources/pics/MayaDespise2.gif"]
 
@@ -202,6 +219,9 @@ class RoleBuilder:
         elif role == "MayaConfusedSide":
             strs = ["resources/pics/MayaConfusedSide1.gif", "resources/pics/MayaConfusedSide2.gif",
                     "resources/pics/MayaConfusedSide3.gif"]
+
+        elif role == "Plankton":
+            strs = ["resources/pics/Plankton1.png", "resources/pics/Plankton2.png"]
 
         for i in range(len(strs)):
             self.roles.append(pygame.image.load(strs[i]).convert_alpha())
