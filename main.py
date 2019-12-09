@@ -26,21 +26,21 @@ if __name__ == '__main__':
     temp2 = int(0.375*height)
     #dl = DialogBox(screen, width, temp, temp2, 0)
     action = 3
-    if action == 0:
-        lp.display_logo()
-        action = action + 1
+    while True:
+        if action == 0:
+            lp.display_logo()
+            action = action + 1
 
-    if action == 1:
-        tp.display_title()
-        action = action + 1
+        if action == 1:
+            tp.display_title()
+            action = action + 1
 
-    if action == 2:
-        pygame.mixer.music.stop()
-        p1p.display_part1()
-        action = action + 1
+        if action == 2:
+            pygame.mixer.music.stop()
+            p1p.display_part1()
+            action = action + 1
 
-    if action == 3:
-        p2p.display_part2()
-
-
+        if action == 3:
+            p2p.display_part2()
+            action = 0
 

@@ -12,6 +12,7 @@ import sys
 class Part2Printer:
 
     def __init__(self, screen, width, height):
+        self.evidence = [0]
         self.add = False
         self.height = height
         self.width = width
@@ -85,30 +86,30 @@ class Part2Printer:
         self.buttons.append(exhibitBag)
 
         self.evidenceList = []
-        self.evidenceList.append(Evidence('resources/pics/Evidence1.png', 'pictureOfCanteen', height, width, screen))
-        self.evidenceList.append(Evidence('resources/pics/Evidence2.png', 'autopsyReport', height, width, screen))
+        self.evidenceList.append(Evidence('resources/pics/Evidence2.png', 'pictureOfCanteen', height, width, screen))
+        self.evidenceList.append(Evidence('resources/pics/Evidence1.png', 'autopsy', height, width, screen))
         self.evidenceList.append(Evidence('resources/pics/Evidence3.png', 'pictureOfKitchen', height, width, screen))
         self.evidenceList.append(Evidence('resources/pics/Evidence4.png', 'eggBurger', height, width, screen))
 
-        self.dialog_p1 = DialogBox(screen, width, height, self.buttons, self.evidenceList)
-        self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList)
+        self.dialog_p1 = DialogBox(screen, width, height, self.buttons, self.evidenceList, self.evidence)
+        self.dialog_b = DialogBox(screen, width, height, self.buttons, self.evidenceList, self.evidence)
         self.dialog = self.dialog_b
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
         self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193, 303: 315, 304: 325, 305: 339,
-                     306: 359, 307: 367, 308: 375, 432: 440, 433: 440, 434: 451, 435: 460, 436: 470}
-        self.present = {132:'eggBurger', 305:'poison'}
-        self.presentLine = {132:210, 305:388}
+                     306: 359, 307: 367, 308: 375, 460: 470, 461: 479, 462: 485, 463: 496, 464: 504, 465:511}
+        self.present = {132:'eggBurger', 305:'poison', 464: 'autopsy'}
+        self.presentLine = {132:210, 305:388, 464:520}
         self.deterAction = ActionBuilder("PhoenixDeter", height)
         self.objectionAction = ActionBuilder("PhoenixObjection", height)
     def display_part2(self):
-        evidence = 0
-        self.i = 302
+        self.evidence[0] = 0
+        self.i = 1
         while True:
             if self.i == self.wrong+5:
                 self.dialog.hpbd.damaged()
                 self.i = self.last_text
                 continue
-            if self.i == 999:
+            if self.i == 1000:
                 return None
             self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound)  # 返回值为内部作用后返回的行号
             flag = True
@@ -135,12 +136,13 @@ class Part2Printer:
                                 self.i = self.i + 1
                                 flag2 = True
                             else:
-                                evidence = (evidence + 1) % len(self.evidenceList)
+                                self.evidence[0] = (self.evidence[0] + 1) % len(self.evidenceList)
+                                b=3
                             if self.i == 2:
                                 self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
 
                         elif self.buttons[2].respond_to_clicking(event):  # 后退
-                            evidence = (evidence - 1) % len(self.evidenceList)
+                            self.evidence[0] = (self.evidence[0] - 1) % len(self.evidenceList)
                         elif self.buttons[3].respond_to_clicking(event):  # 返回
                             self.buttons[3].enable(0)
                             self.buttons[4].enable(0)
@@ -155,7 +157,7 @@ class Part2Printer:
                                     self.screen.blit(roles[0], role_rects[0])
                                     pygame.display.update()
                                     self.fClock.tick(30)
-                                if self.present.get(self.i) == self.evidenceList[evidence].title:
+                                if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
                                     pygame.mixer.music.stop()
                                     self.i = self.presentLine.get(self.i)
                                     flag2 = True
@@ -181,22 +183,29 @@ class Part2Printer:
                 self.back_g.display_background(1)
                 # pygame.display.update()
                 if self.condition == 1:
-                    self.evidenceList[evidence].display_evidence()
+                    self.evidenceList[self.evidence[0]].display_evidence()
                 for button in self.buttons:
                     button.display_button()
                 self.dialog.hpbd.display_health()
                 pygame.display.update()
             if self.i == 37:
                 self.i = self.question.display_question(0)
+            elif self.i == 542:
+                self.i = self.question.display_question(1)
             elif self.i == 94 or self.i == 267:
                 self.back_g.change_background("resources/pics/Witness.png")
                 pygame.mixer.music.stop()
                 pygame.mixer.music.load("resources/music/Witness.mp3")
                 pygame.mixer.music.play(-1)
                 self.back_g.fade_in()
-            elif self.i == 114 or self.i == 286:
+
+            elif self.i == 114 or self.i == 286 or self.i == 448:
                 self.back_g.change_background("resources/pics/Black.png")
                 pygame.mixer.music.stop()
+                self.back_g.fade_in()
+
+            elif self.i == 614:
+                self.back_g.change_background("resources/pics/Lounge.png")
                 self.back_g.fade_in()
 
             elif self.i == 298:

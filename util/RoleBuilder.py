@@ -169,6 +169,10 @@ class RoleBuilder:
                     "resources/pics/PhoenixPaper5.gif", "resources/pics/PhoenixPaper6.gif",
                     ]
 
+        elif role == "EdgeworthPaper":
+            strs = ["resources/pics/EdgeworthPaper1.gif", "resources/pics/EdgeworthPaper2.gif"
+                    ]
+
         elif role == "PhoenixBlurt":
             strs = ["resources/pics/PhoenixBlurt1.gif", "resources/pics/PhoenixBlurt1.gif",
                     "resources/pics/PhoenixBlurt1.gif","resources/pics/PhoenixBlurt1.gif",
