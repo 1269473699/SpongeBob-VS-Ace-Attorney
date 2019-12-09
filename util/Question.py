@@ -7,13 +7,13 @@ class QuestionBuilder:
         self.sound = pygame.mixer.Sound('resources/pics/OnChoose.ogg')
         self.height = int(0.5 * height)
         self.width = width
-        self.surfaces = [pygame.image.load('resources/pics/Question1.jpg')]
+        self.surfaces = [pygame.image.load('resources/pics/Question1.jpg'),pygame.image.load('resources/pics/Question2.png')]
         for i in range(len(self.surfaces)):
             self.surfaces[i] = pygame.transform.scale(self.surfaces[i], (width, self.height))
         self.rect = self.surfaces[0].get_rect()
         self.rect.top = self.height
         self.screen = screen
-        self.destination = [[38, 66, 52]] #二维列表，每个问题的三个选项的返回值（要跳转到的行数）
+        self.destination = [[38, 66, 52], [571, 544, 559]] #二维列表，每个问题的三个选项的返回值（要跳转到的行数）
 
     def display_question(self, i):
         while True:

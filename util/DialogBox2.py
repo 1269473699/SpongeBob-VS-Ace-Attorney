@@ -13,9 +13,10 @@ from time import sleep
 class DialogBox:
     roles, role_rects = [], []
     speed = 1
-    def __init__(self, screen, width, height,  buttons, evidenceList):
+    def __init__(self, screen, width, height,  buttons, evidenceList, evidence):
         '''self.top = top
         self.left = left'''
+        self.evidence = evidence
         self.buttons = buttons
         self.height = height
         self.width = width
@@ -63,7 +64,7 @@ class DialogBox:
             # self.screen.blit(self.table_pic, (0, int(self.height*0.5 - 0.182812*0.5*self.height)))
             self.screen.blit(self.table_pic, self.table_point)
         if self.condition == 1:
-            self.evidenceList[self.evidence].display_evidence()
+            self.evidenceList[self.evidence[0]].display_evidence()
         for button in self.buttons:
             button.display_button()
         if self.dialog_text != "":
@@ -137,7 +138,6 @@ class DialogBox:
         self.roles, self.role_rects = builder.get_roles()
         self.sayer_text = texts[0]
         i = 0
-        self.evidence = 0
         while i < self.speed*len(dialogue):
             punctuation = False
             words = dialogue[:i//self.speed+1:1]
@@ -156,9 +156,10 @@ class DialogBox:
                         if self.condition == 0:
                             i = (len(dialogue) - 1) * self.speed
                         else:
-                            self.evidence = (self.evidence + 1) % len(self.evidenceList)
+                            self.evidence[0] = (self.evidence[0] + 1) % len(self.evidenceList)
+
                     elif self.buttons[2].respond_to_clicking(event):
-                        self.evidence = (self.evidence - 1) % len(self.evidenceList)
+                        self.evidence[0] = (self.evidence[0] - 1) % len(self.evidenceList)
                     elif self.buttons[3].respond_to_clicking(event):
                         self.buttons[3].enable(0)
                         self.buttons[4].enable(0)
