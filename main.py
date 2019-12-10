@@ -42,5 +42,5 @@ if __name__ == '__main__':
 
         if action == 3:
             p2p.display_part2()
-            action = 0
+            action = 1
 

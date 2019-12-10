@@ -19,6 +19,28 @@ class ActionBuilder:
                 self.role_rects[i].top = 0
                 self.role_rects[i].left = 0
 
+        elif action == "innocent":
+            strs = ["resources/pics/Innocent1.png",
+                    "resources/pics/Innocent2.png"]
+            self.action_sound = pygame.mixer.Sound("resources/sounds/Hammer.ogg")
+            for i in range(len(strs)):
+                self.roles.append(pygame.image.load(strs[i]).convert_alpha())
+                self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.5 * 1.5), int(height * 0.5)))
+                self.role_rects.append(self.roles[i].get_rect())
+                self.role_rects[i].top = 0
+                self.role_rects[i].left = 0
+
+        elif action == "guilty":
+            strs = ["resources/pics/Guilty1.png",
+                    "resources/pics/Guilty2.png"]
+            self.action_sound = pygame.mixer.Sound("resources/sounds/Hammer.ogg")
+            for i in range(len(strs)):
+                self.roles.append(pygame.image.load(strs[i]).convert_alpha())
+                self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.5 * 1.5), int(height * 0.5)))
+                self.role_rects.append(self.roles[i].get_rect())
+                self.role_rects[i].top = 0
+                self.role_rects[i].left = 0
+
         elif action == "testimony":
             strs = ["resources/pics/Testimony1.png",
                     "resources/pics/Testimony2.png","resources/pics/Testimony3.png",
@@ -50,6 +72,16 @@ class ActionBuilder:
         elif action == "PhoenixObjection":
             strs = ["resources/pics/Objection.png"]
             self.action_sound = pygame.mixer.Sound("resources/sounds/PhoenixObjection.ogg")
+            for i in range(len(strs)):
+                self.roles.append(pygame.image.load(strs[i]).convert_alpha())
+                self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.25 * 1.5), int(height * 0.25)))
+                self.role_rects.append(self.roles[i].get_rect())
+                self.role_rects[i].top = 0
+                self.role_rects[i].left = 0
+
+        elif action == "Kurae":
+            strs = ["resources/pics/Kurae.png"]
+            self.action_sound = pygame.mixer.Sound("resources/sounds/Kurae.ogg")
             for i in range(len(strs)):
                 self.roles.append(pygame.image.load(strs[i]).convert_alpha())
                 self.roles[i] = pygame.transform.scale(self.roles[i], (int(height * 0.25 * 1.5), int(height * 0.25)))

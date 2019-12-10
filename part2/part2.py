@@ -12,6 +12,7 @@ import sys
 class Part2Printer:
 
     def __init__(self, screen, width, height):
+        self.gameState = 1
         self.evidence = [0]
         self.add = False
         self.height = height
@@ -97,13 +98,15 @@ class Part2Printer:
         self.sound = pygame.mixer.Sound("resources/sounds/TextCommon.wav")
         self.link = {128: 138, 129: 146, 130: 158, 131: 164, 132: 176, 133: 186, 134: 193, 303: 315, 304: 325, 305: 339,
                      306: 359, 307: 367, 308: 375, 460: 470, 461: 479, 462: 485, 463: 496, 464: 504, 465:511}
-        self.present = {132:'eggBurger', 305:'poison', 464: 'autopsy'}
-        self.presentLine = {132:210, 305:388, 464:520}
+        self.present = {132:'eggBurger', 305:'poison', 464: 'autopsy', 582 : 'eggBurger'}
+        self.presentLine = {132:210, 305:388, 464:520, 582 : 584}
         self.deterAction = ActionBuilder("PhoenixDeter", height)
         self.objectionAction = ActionBuilder("PhoenixObjection", height)
+        self.kuraeAction = ActionBuilder("Kurae", height)
+
     def display_part2(self):
         self.evidence[0] = 0
-        self.i = 1
+        self.i = 416
         while True:
             if self.i == self.wrong+5:
                 self.dialog.hpbd.damaged()
@@ -111,6 +114,11 @@ class Part2Printer:
                 continue
             if self.i == 1000:
                 return None
+            if self.dialog.hpbd.hp <= 0 and self.gameState:
+                self.gameState = 0
+                self.i = 678
+            if self.i == 681 and self.gameState == 0:
+                return 1
             self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound)  # 返回值为内部作用后返回的行号
             flag = True
             flag2 = False
@@ -133,8 +141,9 @@ class Part2Printer:
                                 #print(self.i)
                         elif self.buttons[1].respond_to_clicking(event):  # 播放
                             if self.condition == 0:
-                                self.i = self.i + 1
-                                flag2 = True
+                                if self.i != 582:
+                                    self.i = self.i + 1
+                                    flag2 = True
                             else:
                                 self.evidence[0] = (self.evidence[0] + 1) % len(self.evidenceList)
                                 b=3
@@ -151,20 +160,38 @@ class Part2Printer:
                         elif self.buttons[4].respond_to_clicking(event):  # 指证
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
-                                roles, role_rects, action_sound = self.objectionAction.get_actions()
-                                action_sound.play()
-                                for i in range(15):
-                                    self.screen.blit(roles[0], role_rects[0])
-                                    pygame.display.update()
-                                    self.fClock.tick(30)
-                                if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
-                                    pygame.mixer.music.stop()
-                                    self.i = self.presentLine.get(self.i)
-                                    flag2 = True
+                                if self.i == 582:
+                                    roles, role_rects, action_sound = self.kuraeAction.get_actions()
+                                    action_sound.play()
+                                    for i in range(15):
+                                        self.screen.blit(roles[0], role_rects[0])
+                                        pygame.display.update()
+                                        self.fClock.tick(30)
+                                    if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
+                                        pygame.mixer.music.stop()
+                                        self.i = self.presentLine.get(self.i)
+                                        flag2 = True
+                                    else:
+                                        self.last_text = self.i
+                                        self.i = self.wrong
+                                        flag2 = True
+
                                 else:
-                                    self.last_text = self.i
-                                    self.i = self.wrong
-                                    flag2 = True
+                                    if self.i in self.presentLine.keys():
+                                        roles, role_rects, action_sound = self.objectionAction.get_actions()
+                                        action_sound.play()
+                                        for i in range(15):
+                                            self.screen.blit(roles[0], role_rects[0])
+                                            pygame.display.update()
+                                            self.fClock.tick(30)
+                                        if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
+                                            pygame.mixer.music.stop()
+                                            self.i = self.presentLine.get(self.i)
+                                            flag2 = True
+                                        else:
+                                            self.last_text = self.i
+                                            self.i = self.wrong
+                                            flag2 = True
 
                         elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
@@ -218,6 +245,7 @@ class Part2Printer:
                 poison = Evidence('resources/pics/Poison.png', 'poison', self.height, self.width, self.screen)
                 self.evidenceList.append(poison)
                 self.add = True
+
 
     def display_deter(self):
         roles, role_rects, action_sound = self.deterAction.get_actions()

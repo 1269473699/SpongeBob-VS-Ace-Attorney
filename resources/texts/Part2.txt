@@ -414,7 +414,7 @@ play$resources/sounds/TextSurprised.wav$
 成步堂$white$检方所谓的决定性证言，$3$PhoenixBlurt$resources/pics/Defend.png$$DefendTable$$$
 成步堂$white$根本就是决定性的谎言！$3$PhoenixAngry$resources/pics/Defend.png$$DefendTable$$$
 真宵$white$太精彩了！成步堂君！$3$MayaSideAngry$resources/pics/CourtAssistant.png$$$$$
-真宵$white$不过我总觉得御剑检察官马上就会提出新的观点..$3$MayaSideThink$resources/pics/CourtAssistant.png$$$$$
+真宵$white$不过我总觉得御剑检察官马上就会提出新的观点..$3$MayaSideNormal$resources/pics/CourtAssistant.png$$$$$
 御剑$white$呵呵呵呵...$3$EdgeworthWag$resources/pics/Accusation.png$stop$AccusationTable$$
 play$resources/sounds/TextInspired.ogg$
 御剑$white$辩方律师请不要得意忘形过头.$3$EdgeworthProud$resources/pics/Accusation.png$stop$AccusationTable$$
@@ -609,7 +609,8 @@ play$resources/sounds/Table.ogg$
 裁判长$white$请检方下一次调查清楚，$2$JudgeSerious$resources/pics/JudgeChair.png$$$
 裁判长$white$到底在被害人吃下汉堡后，发生了什么！$2$JudgeSerious$resources/pics/JudgeChair.png$$$
 $action$hammer$40$
-裁判长$white$休庭！无罪判决交给郑义做！$2$JudgeSerious$resources/pics/JudgeChair.png$stop$$
+$action$innocent$1000$
+裁判长$white$休庭！$2$JudgeSerious$resources/pics/JudgeChair.png$stop$$
 $green$XXXX年XX月XX日 法庭第二休息室$6$$resources/pics/Black.png$$$$$$
 成步堂$white$呼...终于结束了...$3$$resources/pics/Lounge.png$$$$$
 真宵$white$成步堂君！这次是这么多年来最离奇的一次法庭！$3$MayaSmile$resources/pics/Lounge.png$resources/music/Maya.mp3$$$$
@@ -672,3 +673,10 @@ play$resources/sounds/TextInspired.ogg$
 海绵宝宝$gold$我准备好了！$3$SpongeBobSmile$resources/pics/Lounge.png$$$$$
 成步堂$white$那么，我的工作圆满结束.$3$MayaSurprisedIntro$resources/pics/Lounge.png$$$$$
 成步堂$white$感谢游玩！$3$MayaSurprisedIntro$resources/pics/Lounge.png$$$$$
+goto$675$
+
+裁判长$white$好了，结果已经很明显了。$2$JudgeSerious$resources/pics/JudgeChair.png$stop$$
+$action$guilty$1000$
+裁判长$white$休庭！$2$JudgeSerious$resources/pics/JudgeChair.png$stop$$
+成步堂$#6495ED$（可恶...如果能再仔细思考一下的话...)$3$$resources/pics/Lounge.png$$$$$
+goto$681$
