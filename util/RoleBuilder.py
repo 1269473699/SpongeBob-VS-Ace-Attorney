@@ -76,7 +76,7 @@ class RoleBuilder:
                     ]
 
         elif role == "EdgeworthSlam":
-            strs = ["resources/pics/EdgeworthSlam1.gif","resources/pics/EdgeworthSlam1.gif",
+            strs = ["resources/pics/EdgeworthSlam2.gif","resources/pics/EdgeworthSlam1.gif","resources/pics/EdgeworthSlam1.gif",
                     "resources/pics/EdgeworthSlam1.gif","resources/pics/EdgeworthSlam2.gif",
                     "resources/pics/EdgeworthSlam2.gif","resources/pics/EdgeworthSlam2.gif",
                     ]
@@ -199,7 +199,7 @@ class RoleBuilder:
                     ]
 
         elif role == "PhoenixSlam":
-            strs = ["resources/pics/PhoenixSlam1.gif", "resources/pics/PhoenixSlam2.gif",
+            strs = ["resources/pics/PhoenixSlam2.gif","resources/pics/PhoenixSlam1.gif", "resources/pics/PhoenixSlam2.gif",
                     "resources/pics/PhoenixSlam3.gif", "resources/pics/PhoenixSlam4.gif",
                     "resources/pics/PhoenixSlam5.gif"
                     ]

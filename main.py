@@ -43,4 +43,5 @@ if __name__ == '__main__':
         if action == 3:
             p2p.display_part2()
             action = 1
+            p2p.dialog.hpbd.refresh()
 

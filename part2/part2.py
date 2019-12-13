@@ -18,7 +18,7 @@ class Part2Printer:
         self.height = height
         self.width = width
         self.wrong = 203
-        self.i = 1
+        self.i = 460
         self.condition = 0
         self.screen = screen
         self.fps = 30
@@ -27,6 +27,7 @@ class Part2Printer:
         self.back_g = Background(width, height,
                                  'resources/pics/Black.png',
                                  'resources/pics/Background2.jpg', self.screen)
+        self.enables = [128,129,130,131,132,133,134,135,136,303,304,305,306,307,308,460,461,462,463,464,465,582]
 
         width1 = int(width * 0.7)
         height1 = int(width1 / 1.2)
@@ -106,8 +107,10 @@ class Part2Printer:
 
     def display_part2(self):
         self.evidence[0] = 0
-        self.i = 416
-        while True:
+        self.i = 600
+        while True: #用于控制对话不停播放
+            if self.i not in self.enables:
+                self.buttons[4].enable(0)
             if self.i == self.wrong+5:
                 self.dialog.hpbd.damaged()
                 self.i = self.last_text
@@ -122,7 +125,7 @@ class Part2Printer:
             self.i = self.dialog.print_text('resources/texts/Part2.txt', self.i, self.sound)  # 返回值为内部作用后返回的行号
             flag = True
             flag2 = False
-            while True and flag:
+            while True and flag: #用查询方式读取鼠标消息 flag是等鼠标弹起 flag2用于标识鼠标按下 flag2为true按下后再弹起让flag=true
                 if pygame.event.get_blocked(pygame.MOUSEBUTTONUP):
                     pygame.event.set_allowed(pygame.MOUSEBUTTONUP)
                     pygame.event.set_allowed(pygame.MOUSEBUTTONDOWN)
@@ -136,8 +139,8 @@ class Part2Printer:
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
                                 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
                                 self.display_deter()
-                                self.i = self.link.get(self.i)
-                                flag2 = True
+                                self.i = self.link.get(self.i)-1
+                                flag = True
                                 #print(self.i)
                         elif self.buttons[1].respond_to_clicking(event):  # 播放
                             if self.condition == 0:
@@ -146,7 +149,6 @@ class Part2Printer:
                                     flag2 = True
                             else:
                                 self.evidence[0] = (self.evidence[0] + 1) % len(self.evidenceList)
-                                b=3
                             if self.i == 2:
                                 self.sound = pygame.mixer.Sound("resources/sounds/Speak1.ogg")
 
@@ -169,33 +171,35 @@ class Part2Printer:
                                         self.fClock.tick(30)
                                     if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
                                         pygame.mixer.music.stop()
-                                        self.i = self.presentLine.get(self.i)
-                                        flag2 = True
+                                        self.i = self.presentLine.get(self.i)-1
+                                        flag = True
                                     else:
                                         self.last_text = self.i
-                                        self.i = self.wrong
-                                        flag2 = True
+                                        self.i = self.wrong-1
+                                        flag = True
 
                                 else:
-                                    if self.i in self.presentLine.keys():
-                                        roles, role_rects, action_sound = self.objectionAction.get_actions()
-                                        action_sound.play()
-                                        for i in range(15):
-                                            self.screen.blit(roles[0], role_rects[0])
-                                            pygame.display.update()
-                                            self.fClock.tick(30)
-                                        if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
-                                            pygame.mixer.music.stop()
-                                            self.i = self.presentLine.get(self.i)
-                                            flag2 = True
-                                        else:
-                                            self.last_text = self.i
-                                            self.i = self.wrong
-                                            flag2 = True
+                                    roles, role_rects, action_sound = self.objectionAction.get_actions()
+                                    action_sound.play()
+                                    for i in range(15):
+                                        self.screen.blit(roles[0], role_rects[0])
+                                        pygame.display.update()
+                                        self.fClock.tick(30)
+                                    if self.present.get(self.i) == self.evidenceList[self.evidence[0]].title:
+                                        pygame.mixer.music.stop()
+                                        self.i = self.presentLine.get(self.i)
+                                        flag = True
+                                    else:
+                                        self.last_text = self.i
+                                        self.i = self.wrong-1
+                                        flag = True
 
                         elif self.buttons[5].respond_to_clicking(event):  # 证物袋
                             self.buttons[3].enable(1)
-                            self.buttons[4].enable(1)
+                            if self.i in self.enables:
+                                self.buttons[4].enable(1)
+                            else:
+                                self.buttons[4].enable(0)
                             self.buttons[5].enable(0)
                             self.buttons[2].enable(1)
 
@@ -231,7 +235,7 @@ class Part2Printer:
                 pygame.mixer.music.stop()
                 self.back_g.fade_in()
 
-            elif self.i == 614:
+            elif self.i == 616:
                 self.back_g.change_background("resources/pics/Lounge.png")
                 self.back_g.fade_in()
 
